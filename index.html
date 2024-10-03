@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,11 +16,45 @@
             padding: 0;
         }
 
-        .centrar {
+        .section {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+        }
+
+        .h100 {
+            height: 100%;
+        }
+
+        .h70 {
             height: 70%;
+        }
+
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .mb-32 {
+            margin-bottom: 32px;
+        }
+
+        .mb-40 {
+            margin-bottom: 40px;
+        }
+
+        .fs-20 {
+            font-size: 20px;
+        }
+
+        .fs-28 {
+            font-size: 28px;
+        }
+
+        .fs-36 {
+            font-size: 36px;
         }
 
         .red {
@@ -29,20 +64,48 @@
         .blue {
             background-color: blue;
         }
+
+        nav {
+            position: fixed;
+            ul {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .front-page {
+            padding-top: 20vh;
+            main {
+                width: 70%;
+                margin: 0 auto;
+            }
+        }
     </style>
 </head>
-<body>
 
-    <div class="centrar red">
-        karina
-    </div>
-    <div class="centrar blue">
+<body>
+    <nav>
+        <ul>
+            <li class="mb-16">Home</li>
+            <li class="mb-16">About</li>
+            <li class="mb-16">Contact</li>
+        </ul>
+    </nav>
+
+    <section class="front-page section red h100">
+
+        <main>
+            <h1>Dota Latam</h1>
+            <a href="https://discord.gg/dota-2-oficial" target="_blank">Enlace Discord</a>
+        </main>
+    </section>
+    <section class="section blue h70">
         Ruth
-    </div>
-    <div class="centrar red">
+    </section>
+    <section class="section red h70">
         Luki
-    </div>
-<!-- 
+    </section>
+    <!-- 
     <nav>
 
     </nav>
@@ -54,6 +117,7 @@
     <footer>
 
     </footer> -->
-    
+
 </body>
+
 </html>
