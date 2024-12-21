@@ -62,10 +62,6 @@ const goToPage = (path: string) => {
     router.push(path);
 }
 
-const navState = reactive<{ xpChanged: boolean }>({
-    xpChanged: false,
-});
-
 const dropdownOpen = ref(false);
 const toggleDropdown = () => {
     dropdownOpen.value = !dropdownOpen.value;

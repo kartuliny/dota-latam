@@ -1,20 +1,13 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, reactive, ref, toRef, watch } from 'vue';
 import RegularDesign from '../design/Regular/RegularDesign.vue';
-import { RouletteOrientation, RouletteProEmits, RouletteProProps } from './Roulette.d';
+import { RouletteOrientation, RouletteProProps } from './Roulette.d';
 import classNames from './classes';
 
 const props = defineProps<RouletteProProps>()
 const emits = defineEmits(['onPrizeDefined']);
 const type = toRef(props, 'type');
 const start = toRef(props, 'start');
-const width = ref(-1);
-const height = ref(-1);
-
-const reset = () => {
-    width.value = -1;
-    height.value = -1;
-};
 
 const prizeItemHeightWithoutText = computed<number>(() =>
     props.type === RouletteOrientation.vertical ? 172 : 174
@@ -34,13 +27,11 @@ const design = reactive({
     prizeItemHeight: prizeItemHeight.value,
     bottomChildren: null,
     prizeItemClassName: prizeItemClassName.value,
-    hasText: (text?: string) => true
 })
 
 
 const wrapperSize = ref<number>(0)
 const wrapperRef = ref<HTMLDivElement | null>(null);
-const { stopInCenter } = props.options;
 const sound = new Audio('src/assets/play/audio-carusel.mp3');
 const soundWinner = new Audio('src/assets/play/fancy.wav');
 

@@ -1,4 +1,3 @@
-import { get } from "http";
 import { defineStore } from "pinia";
 
 export const useSettingStore = defineStore("setting", {

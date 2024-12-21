@@ -21,10 +21,6 @@ const prizeItemHeight = computed(() =>
     props.prizesWithText ? 234 : prizeItemHeightWithoutText.value
 );
 
-const prizeItemClassName = computed(() =>
-    `roulette-pro-regular-design-prize-item-${props.type}`
-);
-
 // Texto condicional para los ítems
 const hasText = (text?: string) => props.prizesWithText && text !== undefined;
 </script>

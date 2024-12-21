@@ -72,7 +72,7 @@ onMounted(() => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(item, index) in items">
+                        <tr v-for="(item) in items">
                             <td :style="columnStyle"><img :src="item.url" alt="image-{{index}}" width="100"></td>
                             <td :style="columnStyle">{{ item.name }}</td>
                             <td :style="columnStyle" :class="`bold rarity-`+ item.rarity">{{ getRarityName(item.rarity) }}</td>

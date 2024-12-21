@@ -34,7 +34,6 @@ const colors = [
 ];
 const maxParticles = 150;
 const speed = 2;
-const frameInterval = 15;
 let isRunning = false;
 
 // Crear partículas

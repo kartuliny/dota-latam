@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import axios from 'axios';
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useUserStore } from '../shared/store/user/user';
 import { router } from '@/router';
 

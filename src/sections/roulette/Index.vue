@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ruletaWallpaper from '@/assets/images/fondo-ruleta.webp';
-import { onMounted, ref, inject } from 'vue';
+import { onMounted, ref } from 'vue';
 import Roulette from '../shared/look/Roulette/Index.vue';
 import { SettingsState, SettingsStateView, Tier } from '../shared/store/setting/setting';
 import { GetRouletteSettingUseCase } from '@/modules/roulette/application/GetRouletteSettingUseCase';
@@ -62,7 +62,7 @@ const getSettings = async () => {
     }
 };
 
-const getImageClasses = (image: RouletteItem, index: number): { [key: string]: boolean } => {
+const getImageClasses = (index: number): { [key: string]: boolean } => {
     return {
         'selected': selectedImage && selectedImage.value?._id === tiers.value.type2Items[index]._id, // Clase condicional para selected
     };
@@ -182,7 +182,7 @@ onMounted(() => {
                                     <div>
                                         <div class="item" @click="selectedImage = item">
                                             <!-- <span class="title">{{ item.price }}</span> -->
-                                            <img :src="item.url" :class="getImageClasses(item, index)">
+                                            <img :src="item.url" :class="getImageClasses(index)">
                                             <span class="type" :class="`rarity-${item.rarity}`">{{
                                                 getRarityName(item.rarity)
                                                 }}</span>
@@ -212,7 +212,7 @@ onMounted(() => {
                             <hr class="mb-20">
                         </div>
                         <div class="d-grid gap-05 w-100">
-                            <template v-for="(item, index) in tiers.type0Items" :key="index">
+                            <template v-for="(item) in tiers.type0Items" :key="index">
                                 <div class="position-relative">
                                     <div class="item">
                                         <!-- <span class="title">{{ item.price }}</span> -->
@@ -232,7 +232,7 @@ onMounted(() => {
                             <hr class="mb-20">
                         </div>
                         <div class="d-grid gap-05 w-100">
-                            <template v-for="(item, index) in tiers.type1Items" :key="index">
+                            <template v-for="(item) in tiers.type1Items" :key="index">
                                 <div class="position-relative">
                                     <div class="item">
                                         <!-- <span class="title">{{ item.price }}</span> -->
@@ -252,7 +252,7 @@ onMounted(() => {
                             <hr class="mb-20">
                         </div>
                         <div class="d-grid gap-05 w-100">
-                            <template v-for="(item, index) in tiers.type2Items" :key="index">
+                            <template v-for="(item) in tiers.type2Items" :key="index">
                                 <div class="position-relative">
                                     <div class="item">
                                         <!-- <span class="title">{{ item.price }}</span> -->

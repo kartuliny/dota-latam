@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref, watch } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
 import RoulettePro from '@/sections/shared/look/Roulette/roulette/Index.vue';
 import { RouletteOrientation } from './roulette/Roulette.d';
 import { RouletteItem } from '@/modules/roulette/domain/models/RouletteItem';
-import { io } from 'socket.io-client';
 import { useSocketStore } from '../../store/socket/socket';
 
 export interface SettingType {
@@ -244,8 +243,6 @@ const handlePrizeDefined = () => {
 // };
 
 const type = settings.type.value;
-const design = settings.design.value;
-const soundWhileSpinning = settings.soundWhileSpinning.value;
 const stopInCenter = settings.stopInCenter.value;
 const withoutAnimation = settings.withoutAnimation.value;
 const prizesWithText = settings.prizesWithText.value;

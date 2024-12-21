@@ -2,10 +2,8 @@
 import { AuthLoginParams } from '@/modules/sign/application/auth/AuthLoginParams';
 import { AuthLogin } from '@/modules/sign/domain/models/auth/AuthLogin';
 import { ErrorMessage, useForm } from 'vee-validate';
-import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n();
-const { defineField, values, handleSubmit, errors } = useForm({
+const { defineField } = useForm({
     initialValues: <AuthLoginParams>AuthLogin.initital(),
     validationSchema: AuthLogin.validationSchema()
 });

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory, NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 import SignInVerify from "@/sections/sign/SignInVerify.vue";
 import MainLayoutNav from "./sections/shared/layout/MainLayoutNav.vue";
 import Home from '@/sections/home/Index.vue';
@@ -8,8 +8,6 @@ import AdminRuletaItems from '@/sections/admin/ruleta/list/Index.vue';
 import AdminXPHistory from '@/sections/admin/xp/history/Index.vue';
 import SignIn2 from "./sections/sign/SignIn2.vue";
 import Ruleta from "./sections/roulette/Index.vue";
-import Ruleta2 from "./sections/Ruleta2.vue";
-import Ruleta3 from "./sections/Ruleta3.vue";
 import RegisterRuleta from "./sections/RegisterRuleta.vue";
 import MainLayoutAdmin from "./sections/shared/layout/MainLayoutAdmin.vue";
 import RuletaPro from "./sections/shared/look/Roulette/Index.vue";
@@ -79,19 +77,9 @@ export const router = createRouter({
             component: SignInVerify,
         },
         {
-            path: "/ruleta2",
-            name: "ruleta2",
-            component: Ruleta2,
-        },
-        {
             path: "/ruleta-pro",
             name: "ruleta-pro",
             component: RuletaPro,
-        },
-        {
-            path: "/ruleta3",
-            name: "ruleta3",
-            component: Ruleta3,
         },
         {
             path: "/registro-ruleta",
@@ -100,7 +88,7 @@ export const router = createRouter({
         }
     ],
 });
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to: RouteLocationNormalized, _: RouteLocationNormalized, next: NavigationGuardNext) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
         try {
             const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
