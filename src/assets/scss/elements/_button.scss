@@ -1,0 +1,99 @@
+// .btn {
+//     color: white;
+//     font-size: 16px;
+//     // width: 100%;
+//     padding: 14px;
+//     border-radius: 4px;
+//     cursor: pointer;
+//     transition: background-color 0.3s;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     &-submit {
+//         border: 1px solid var(--rojo-latam);
+//         background-color: var(--rojo-latam);
+//     }
+
+//     &::hover {
+//         background-color: var(--rojo-latam-minus-20);
+//     }
+
+//     &-discord {
+//         border: 1px solid var(--morado-latam-plus-60);
+//         background-color: var(--morado-latam);
+//     }
+// }
+
+.btn {
+    border: solid 1px var(--rojo-latam);
+    font-size: 16px;
+    background-color: var(--rojo-latam);
+    cursor: pointer;
+    padding: 8px 20px 9px;
+    object-fit: contain;
+    border-radius: 20px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 500;
+
+    &.default {
+        border: solid 1px var(--border-field-1);
+        background-color: var(--blanco-prosegur);
+        color: var(--secundario-prosegur-oscuro-minus-20);
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+
+        &:hover {
+            background-color: var(--gris-prosegur);
+        }
+    }
+
+    &.outline {
+        background-color: transparent;
+        color: var(--rojo-latam);
+    }
+
+    &.submit {
+        border: 1px solid var(--rojo-latam);
+        background-color: var(--rojo-latam);
+        color: var(--blanco) !important;
+
+        &:hover {
+            background-color: var(--rojo-latam);
+            color: var(--blanco);
+        }
+    }
+
+    &.discord {
+        border: 1px solid var(--morado-latam-plus-60);
+        background-color: var(--morado-latam);
+        color: var(--blanco) !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background-color: var(--morado-latam-plus-60);
+            color: var(--blanco);
+        }
+    }
+
+    i {
+        color: var(--rojo-latam);
+        font-size: 20px;
+        -webkit-text-stroke: 0.2px;
+        transition: all 0.3s ease-in-out;
+
+        &::before {
+            transition: transform 0.3s ease;
+        }
+
+        &.rotate-180::before{
+            transform: rotate(180deg);
+            transition: transform 0.3s ease;
+        }
+
+    }
+}

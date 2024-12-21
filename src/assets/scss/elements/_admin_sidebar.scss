@@ -1,0 +1,138 @@
+.admin-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.admin-layout__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.admin-sidebar__trigger {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4em;
+    background: var(--rojo-latam);
+}
+
+.admin-sidebar__trigger>i {
+    display: inline-block;
+    margin: 1.5em 0 0 1.5em;
+    color: #f07ab0;
+}
+
+.admin-sidebar__nav {
+    position: fixed;
+    top: 0;
+    left: -15em;
+    overflow: hidden;
+    transition: all .3s ease-in;
+    width: 15em;
+    height: 100%;
+    background: var(--rojo-latam);;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.admin-sidebar__nav:hover,
+.admin-sidebar__nav:focus,
+.admin-sidebar__trigger:focus+.admin-sidebar__nav,
+.admin-sidebar__trigger:hover+.admin-sidebar__nav {
+    left: 0;
+}
+
+.admin-sidebar__nav ul {
+    position: absolute;
+    top: 4em;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 15em;
+}
+
+.admin-sidebar__nav ul li {
+    width: 100%;
+}
+
+.admin-sidebar__nav-link {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 4em;
+}
+
+.admin-sidebar__nav-link em {
+    font-style: normal;
+    position: absolute;
+    top: 50%;
+    left: 4em;
+    transform: translateY(-50%);
+}
+
+.admin-sidebar__nav-link:hover {
+    background: var(--rojo-latam-minus-20);
+}
+
+.admin-sidebar__nav-link>i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 4em;
+    height: 4em;
+}
+
+.admin-sidebar__nav-link>i::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Mobile First */
+@media (min-width: 42em) {
+    .admin-layout__content {
+        margin-left: 4em;
+    }
+
+    /* Sidebar */
+    .admin-sidebar__trigger {
+        width: 4em;
+    }
+
+    .admin-sidebar__nav {
+        width: 4em;
+        left: 0;
+    }
+
+    .admin-sidebar__nav:hover,
+    .admin-sidebar__nav:focus,
+    .admin-sidebar__trigger:hover+.admin-sidebar__nav,
+    .admin-sidebar__trigger:focus+.admin-sidebar__nav {
+        width: 15em;
+    }
+}
+
+@media (min-width: 68em) {
+    .admin-layout__content {
+        margin-left: 15em;
+    }
+
+    /* Sidebar */
+    .admin-sidebar__trigger {
+        display: none
+    }
+
+    .admin-sidebar__nav {
+        width: 15em;
+    }
+
+    .admin-sidebar__nav ul {
+        top: 1.3em;
+    }
+}

@@ -1,0 +1,11 @@
+export interface RouletteItem {
+    _id: string;
+    name: string;
+    price: number;
+    rarity: number;
+    url: string;
+    type: number;
+    quantity: number;
+    enabled: boolean;
+    probability?: number;
+};

@@ -1,0 +1,199 @@
+// Paleta principal
+:root {
+    --blanco: #ffffff;
+    --blanco-latam: #ffffff;
+    --negro: #000000;
+    --negro-latam: #000000;
+    --rojo-latam: #be464a;
+    --morado-latam: #5c6af3;
+    --gris-latam: #636363;
+    --amarillo-latam: #fcf300;
+    --rojo: #ff0000;
+    --verde: #21ba45;
+    --default-text: #ffffff;
+    --rojo-latam-light: rgb(214, 74, 20);
+
+    --comun: #b0c3d9;
+    --poco-comun: #5e98d9;
+    --raro: #4b69ff;
+    --mitico: #8847ff;
+    --legendario: #d32ce6;
+    --inmortal: #b28a33;
+    --arcano: #ade55c;
+
+    /* Variantes para cada nivel */
+    /* Comun */
+    --comun-plus-20: #d0d8e4;
+    --comun-plus-40: #e6ecf0;
+    --comun-plus-60: #f4f6fa;
+    /* Mucho más claro */
+    --comun-minus-20: #96a8bd;
+    --comun-minus-40: #7e90a5;
+    --comun-minus-60: #67788d;
+    /* Mucho más oscuro */
+
+    /* Poco común */
+    --poco-comun-plus-20: #81addf;
+    --poco-comun-plus-40: #a4c3e6;
+    --poco-comun-plus-60: #c7d9ed;
+    --poco-comun-minus-20: #4d80b0;
+    --poco-comun-minus-40: #3f6890;
+    --poco-comun-minus-60: #324f70;
+
+    /* Raro */
+    --raro-plus-20: #6a83ff;
+    --raro-plus-40: #889cff;
+    --raro-plus-60: #a6b5ff;
+    --raro-minus-20: #3c52d1;
+    --raro-minus-40: #303fa4;
+    --raro-minus-60: #242f77;
+
+    /* Mítico */
+    --mitico-plus-20: #a373ff;
+    --mitico-plus-40: #bf99ff;
+    --mitico-plus-60: #d9bfff;
+    --mitico-minus-20: #6a34d1;
+    --mitico-minus-40: #5229a4;
+    --mitico-minus-60: #3d1f77;
+
+    /* Legendario */
+    --legendario-plus-20: #e054ea;
+    --legendario-plus-40: #e97aee;
+    --legendario-plus-60: #f3a0f2;
+    --legendario-minus-20: #a523b4;
+    --legendario-minus-40: #7f1b8c;
+    --legendario-minus-60: #601468;
+
+    /* Inmortal */
+    --inmortal-plus-20: #c3a852;
+    --inmortal-plus-40: #d8be71;
+    --inmortal-plus-60: #ecda90;
+    --inmortal-minus-20: #947128;
+    --inmortal-minus-40: #74561e;
+    --inmortal-minus-60: #573f15;
+
+    /* Arcano */
+    --arcano-plus-20: #c3e887;
+    --arcano-plus-40: #d8f0a9;
+    --arcano-plus-60: #ecf8cc;
+    --arcano-minus-20: #8fb247;
+    --arcano-minus-40: #72903a;
+    --arcano-minus-60: #566f2c;
+
+    --roulette-prizes-background: rgb(237 237 237 / 60%);
+    --front-page-background: rgb(237 237 237 / 30%);
+    --main-background: var(--blanco-latam);
+
+    --morado-latam-minus-80: #1e2176;
+    --morado-latam-minus-60: #353d92;
+    --morado-latam-minus-40: #4c52ad;
+    --morado-latam-minus-20: #6d7bc3;
+    --morado-latam-plus-60: #8193f5;
+    --morado-latam-plus-40: #a3b1f8;
+    --morado-latam-plus-20: #b8c0f9;
+
+    --rojo-latam-minus-80: #3a1b1d;
+    --rojo-latam-minus-60: #6d2d2f;
+    --rojo-latam-minus-40: #9a4a4e;
+    --rojo-latam-minus-20: #d1797c;
+    --rojo-latam-plus-60: #f2b2b7;
+    --rojo-latam-plus-40: #f3c6c6;
+    --rojo-latam-plus-20: #f8d3d3;
+
+    --gris-latam-minus-80: #1a1a1a;
+    --gris-latam-minus-60: #4d4d4d;
+    --gris-latam-minus-40: #808080;
+    --gris-latam-minus-20: #999999;
+    --gris-latam-plus-60: #b3b3b3;
+    --gris-latam-plus-40: #cccccc;
+    --gris-latam-plus-20: #e6e6e6;
+
+    --negro-latam-minus-80: #0e0e0e;
+    --negro-latam-minus-60: #333333;
+    --negro-latam-minus-40: #4d4d4d;
+    --negro-latam-minus-20: #666666;
+    --negro-latam-plus-20: #808080;
+    --negro-latam-plus-40: #999999;
+    --negro-latam-plus-60: #b3b3b3;
+
+    //navbar
+    --navbar-text: var(--negro);
+    --navbar-button-background: rgba(237, 237, 237, 0.5);
+
+    //input
+    --input-background: var(--blanco);
+    --input-border: var(--gris-latam-plus-40);
+    --input-text: var(--gris-latam-minus-60);
+}
+
+
+[latam-theme=dark] {
+    --blanco: #ffffff;
+    --blanco-latam: #ffffff;
+    --negro: #18181b;
+    --negro-latam: #18181b;
+    --rojo-latam: #be464a;
+    --morado-latam: #5c6af3;
+    --gris-latam: #636363;
+    --amarillo-latam: #fcf300;
+    --rojo: #ff0000;
+    --verde: #21ba45;
+    --default-text: var(--blanco-latam);
+    --rojo-latam-light: rgb(214, 74, 20);
+    --text-shadow-rojo-latam: 0px 0px 12px rgba(232, 99, 17, 0.75);
+
+    --box-shadow-gradient: 0 -63px 37px rgba(24, 24, 27, 0.9);
+
+    --comun: #b0c3d9;
+    --poco-comun: #5e98d9;
+    --raro: #4b69ff;
+    --mitico: #8847ff;
+    --legendario: #d32ce6;
+    --inmortal: #b28a33;
+    --arcano: #ade55c;
+
+    --front-page-background: rgba(5, 6, 7, 0.3);
+    --roulette-prizes-background: rgba(5, 6, 7, 0.6);
+    --main-background: var(--negro-latam);
+
+    --morado-latam-minus-80: #1e2176;
+    --morado-latam-minus-60: #353d92;
+    --morado-latam-minus-40: #4c52ad;
+    --morado-latam-minus-20: #6d7bc3;
+    --morado-latam-plus-60: #8193f5;
+    --morado-latam-plus-40: #a3b1f8;
+    --morado-latam-plus-20: #b8c0f9;
+
+    --rojo-latam-minus-80: #3a1b1d;
+    --rojo-latam-minus-60: #6d2d2f;
+    --rojo-latam-minus-40: #9a4a4e;
+    --rojo-latam-minus-20: #d1797c;
+    --rojo-latam-plus-60: #f2b2b7;
+    --rojo-latam-plus-40: #f3c6c6;
+    --rojo-latam-plus-20: #f8d3d3;
+
+    --gris-latam-minus-80: #1a1a1a;
+    --gris-latam-minus-60: #4d4d4d;
+    --gris-latam-minus-40: #808080;
+    --gris-latam-minus-20: #999999;
+    --gris-latam-plus-60: #b3b3b3;
+    --gris-latam-plus-40: #cccccc;
+    --gris-latam-plus-20: #e6e6e6;
+
+    --negro-latam-minus-80: #27272a;
+    --negro-latam-minus-60: #333333;
+    --negro-latam-minus-40: #282020;
+    --negro-latam-minus-20: #666666;
+    --negro-latam-plus-20: #808080;
+    --negro-latam-plus-40: #999999;
+    --negro-latam-plus-60: #b3b3b3;
+
+    //navbar
+    --navbar-text: var(--blanco);
+    --navbar-button-background: rgba(5, 6, 7, 0.4);
+
+    //input
+    --input-background: var(--gris-latam-minus-80);
+    --input-border: var(--gris-latam-minus-60);
+    --input-text: var(--blanco);
+}

@@ -1,0 +1,186 @@
+$font: "IBM Plex Sans", sans-serif;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--input-text);
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/Black/Roboto-Black.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/Black/Roboto-Black.woff?v=2.137") format("woff");
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/BlackItalic/Roboto-BlackItalic.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/BlackItalic/Roboto-BlackItalic.woff?v=2.137") format("woff");
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/Bold/Roboto-Bold.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/Bold/Roboto-Bold.woff?v=2.137") format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/Bold/Roboto-Bold.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/Bold/Roboto-Bold.woff?v=2.137") format("woff");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/BoldItalic/Roboto-BoldItalic.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/BoldItalic/Roboto-BoldItalic.woff?v=2.137") format("woff");
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/BoldItalic/Roboto-BoldItalic.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/BoldItalic/Roboto-BoldItalic.woff?v=2.137") format("woff");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/Italic/Roboto-Italic.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/Italic/Roboto-Italic.woff?v=2.137") format("woff");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/Italic/Roboto-Italic.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/Italic/Roboto-Italic.woff?v=2.137") format("woff");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/Light/Roboto-Light.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/Light/Roboto-Light.woff?v=2.137") format("woff");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/LightItalic/Roboto-LightItalic.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/LightItalic/Roboto-LightItalic.woff?v=2.137") format("woff");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/Medium/Roboto-Medium.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/Medium/Roboto-Medium.woff?v=2.137") format("woff");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/MediumItalic/Roboto-MediumItalic.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/MediumItalic/Roboto-MediumItalic.woff?v=2.137") format("woff");
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/Regular/Roboto-Regular.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/Regular/Roboto-Regular.woff?v=2.137") format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/Regular/Roboto-Regular.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/Regular/Roboto-Regular.woff?v=2.137") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/Thin/Roboto-Thin.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/Thin/Roboto-Thin.woff?v=2.137") format("woff");
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../../assets/fonts/ThinItalic/Roboto-ThinItalic.woff?v=2.137") format("woff2"),
+        url("../../../assets/fonts/ThinItalic/Roboto-ThinItalic.woff?v=2.137") format("woff");
+    font-weight: 100;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'IBM Plex Sans';
+    src: url('../../../assets/fonts/IBM_Plex_Sans/IBMPlexSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Bold */
+@font-face {
+    font-family: 'IBM Plex Sans';
+    src: url('../../../assets/fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Thin */
+@font-face {
+    font-family: 'IBM Plex Sans';
+    src: url('../../../assets/fonts/IBM_Plex_Sans/IBMPlexSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+/* Italic */
+@font-face {
+    font-family: 'IBM Plex Sans';
+    src: url('../../../assets/fonts/IBM_Plex_Sans/IBMPlexSans-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Bold Italic */
+@font-face {
+    font-family: 'IBM Plex Sans';
+    src: url('../../../assets/fonts/IBM_Plex_Sans/IBMPlexSans-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* Thin Italic */
+@font-face {
+    font-family: 'IBM Plex Sans';
+    src: url('../../../assets/fonts/IBM_Plex_Sans/IBMPlexSans-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}

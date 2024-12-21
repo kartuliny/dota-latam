@@ -1,0 +1,64 @@
+@use '../utils' as *;
+
+@each $mb in $margin {
+    $number: calc($mb / ($mb * 0 + 1px));
+
+    .mb-#{$number} {
+        margin-bottom: $mb !important;
+    }
+
+    .ml-#{$number} {
+        margin-left: $mb;
+    }
+
+    .mr-#{$number} {
+        margin-right: $mb;
+    }
+
+    .mt-#{$number} {
+        margin-top: $mb !important;
+    }
+
+    .my-#{$number} {
+        margin-top: $mb !important;
+        margin-bottom: $mb !important;
+    }
+}
+
+@each $pd in $padding {
+    $number: calc($pd / ($pd * 0 + 1px));
+
+    .p-#{$number} {
+        padding: $pd;
+    }
+
+    .pr-#{$number} {
+        padding-right: $pd;
+    }
+
+    .pl-#{$number} {
+        padding-left: $pd;
+    }
+
+    .pt-#{$number} {
+        padding-top: $pd;
+    }
+
+    .pb-#{$number} {
+        padding-bottom: $pd;
+    }
+
+    .px-#{$number} {
+        padding: 0 $pd;
+    }
+
+    .py-#{$number} {
+        padding: $pd 0;
+    }
+}
+
+
+
+.h-500 {
+    height: 500px;
+}
