@@ -31,11 +31,11 @@ const generateState = () => {
 </script>
 <template>
     <div class="login">
-        <!-- <div class="d-flex justify-content-center align-items-center">
+        <!-- <div class="d-flex justify-center align-center">
             <img src="@/assets/images/logo_final.webp" alt="logo" width="100">
             <h1 class="text-dota2-red mb-56">Dota 2 Latam</h1>
         </div> -->
-        <div class="d-flex justify-content-center align-items-center w-100">
+        <div class="d-flex justify-center align-center w-full">
             <!-- <img class="avatar" src="@/assets/images/lich.webp" alt="lich"> -->
             <img class="avatar" src="@/assets/images/marco2.webp" alt="logo">
 
@@ -51,16 +51,16 @@ const generateState = () => {
                     <ErrorMessage name="password"></ErrorMessage>
                 </div>
 
-                <button class="w-100 btn submit mb-16">{{ $t('login.login') }}</button>
+                <button class="w-full btn submit mb-16">{{ $t('login.login') }}</button>
 
                 <p class="text-dota2-grey fs-5 mb-16">{{ $t('login.dontHaveAccount') }} {{ $t('login.register') }}</p>
 
-                <div class="d-flex w-100 justify-content-center mb-16">
+                <div class="d-flex w-full justify-center mb-16">
                     <hr class="w-10 hr-initial"><span class="ml-10 mr-10">{{ $t('labels.or') }}</span>
                     <hr class="w-10 hr-initial">
                 </div>
 
-                <button clasS="btn discord w-100">
+                <button clasS="btn discord w-full">
                     <img class="logo-discord mr-10" src="@/assets/images/discord-white.webp" alt="discord" width="24">
                     <span class="fs-4" @click="loginWithDiscord">{{ $t('login.continueWith') }} Discord</span>
                 </button>

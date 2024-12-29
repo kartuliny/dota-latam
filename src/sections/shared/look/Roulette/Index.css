@@ -3,7 +3,6 @@
   /* Roulette */
   .roulette {
     overflow: hidden;
-    margin: 0 auto;
   }
 
   @keyframes neon-pulse {

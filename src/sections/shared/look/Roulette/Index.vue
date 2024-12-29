@@ -262,7 +262,7 @@ const newPrizes = computed(() => {
 </script>
 
 <template>
-    <div class="w-100">
+    <div class="w-full">
         <div class="roulette mb-20" :class="{ [`${type}`]: true }">
             <RoulettePro :type="type" @onPrizeDefined="handlePrizeDefined" :prizes="newPrizes"
                 :designOption="designOptions" :options="{ stopInCenter, withoutAnimation }"

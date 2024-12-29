@@ -80,7 +80,7 @@
     --arcano-minus-40: #72903a;
     --arcano-minus-60: #566f2c;
 
-    --roulette-prizes-background: rgb(237 237 237 / 60%);
+    --roulette-prizes-background: rgba(255, 255, 255, 0.92);
     --front-page-background: rgb(237 237 237 / 30%);
     --main-background: var(--blanco-latam);
 
@@ -130,7 +130,7 @@
 [latam-theme=dark] {
     --blanco: #ffffff;
     --blanco-latam: #ffffff;
-    --negro: #18181b;
+    --negro: #000000;
     --negro-latam: #18181b;
     --rojo-latam: #be464a;
     --morado-latam: #5c6af3;

@@ -19,11 +19,11 @@ const generateState = () => {
 </script>
 <template>
     <div class="login">
-        <!-- <div class="d-flex justify-content-center align-items-center">
+        <!-- <div class="d-flex justify-center align-center">
             <img src="@/assets/images/logo_final.webp" alt="logo" width="100">
             <h1 class="text-dota2-red mb-56">Dota 2 Latam</h1>
         </div> -->
-        <div class="d-flex justify-content-center align-items-center w-100">
+        <div class="d-flex justify-center align-center w-full">
             <!-- <img class="avatar" src="@/assets/images/lich.webp" alt="lich"> -->
             <img src="@/assets/images/logo_final.webp" alt="logo" width="320">
 
@@ -41,7 +41,7 @@ const generateState = () => {
 
                 <p class="text-dota2-grey fs-5 mb-16">No tienes cuenta aún? Registrate aquí</p>
 
-                <div class="d-flex w-100 justify-content-center mb-16">
+                <div class="d-flex w-full justify-center mb-16">
                     <hr class="w-10 hr-initial"><span class="ml-10 mr-10">or</span>
                     <hr class="w-10 hr-initial">
                 </div>

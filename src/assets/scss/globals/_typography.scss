@@ -1,4 +1,6 @@
-@use '../utils' as *;
+@use '../utils' as utils;
+@use "sass:list";
+
 
 h1,
 h2,
@@ -12,31 +14,31 @@ h5 {
 }
 
 h1 {
-    font-size: clamp(rem(28), rem(16) + 2vw, rem(48));
+    font-size: clamp(utils.rem(28), utils.rem(16) + 2vw, utils.rem(48));
     font-weight: 900;
     line-height: 0.69;
 }
 
 h2 {
-    font-size: clamp(rem(22), rem(14) + 1.5vw, rem(36));
+    font-size: clamp(utils.rem(22), utils.rem(14) + 1.5vw, utils.rem(36));
     font-weight: bold;
     line-height: 0.92;
 }
 
 h3 {
-    font-size: clamp(rem(19), rem(13) + 1.4vw, rem(30));
+    font-size: clamp(utils.rem(19), utils.rem(13) + 1.4vw, utils.rem(30));
     font-weight: bold;
     line-height: 0.92;
 }
 
 h4 {
-    font-size: clamp(rem(16), rem(12) + 1.2vw, rem(24));
+    font-size: clamp(utils.rem(16), utils.rem(12) + 1.2vw, utils.rem(24));
     font-weight: 500;
     line-height: 0.88;
 }
 
 h5 {
-    font-size: clamp(rem(14), rem(10) + 1vw, rem(20));
+    font-size: clamp(utils.rem(14), utils.rem(10) + 1vw, utils.rem(20));
     font-weight: 500;
     line-height: 0.85;
 }
@@ -47,7 +49,7 @@ p {
 
 span,
 p {
-    font-size: clamp(rem(11), rem(16) + 0.5vw, rem(10));
+    font-size: clamp(utils.rem(11), utils.rem(16) + 0.5vw, utils.rem(10));
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -65,13 +67,13 @@ a:active {
     text-decoration: none;
 }
 
-@each $class, $sizes in $fontSizes {
+@each $class, $sizes in utils.$fontSizes {
     .fs-#{$class} {
-        font-size: clamp(rem(nth($sizes, 1)), rem(nth($sizes, 1)) + 1vw, rem(nth($sizes, 2))) !important;
+        font-size: clamp(utils.rem(list.nth($sizes, 1)), utils.rem(list.nth($sizes, 1)) + 1vw, utils.rem(list.nth($sizes, 2))) !important;
     }
 }
 
-@each $class, $color in $colors {
+@each $class, $color in utils.$colors {
     .text-#{$class} {
         color: $color !important;
     }

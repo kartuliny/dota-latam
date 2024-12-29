@@ -5,7 +5,7 @@ WORKDIR /app
 COPY frontend/package*.json ./
 RUN npm install --frozen-lockfile
 COPY frontend/ ./
-RUN npm run build  # Los archivos de build se generarán en /app/dist
+RUN npm run build
 
 FROM nginx:stable-alpine as production-stage
 

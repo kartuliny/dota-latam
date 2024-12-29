@@ -6,4 +6,5 @@ export interface UserData {
     color: string;
     xp: string;
     freeSpin: number;
+    tradeUrl: string;
 }

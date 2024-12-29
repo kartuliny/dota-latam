@@ -55,14 +55,14 @@ onMounted(() => {
     <transition name="fade">
         <Register v-if="showRegister" @close="showRegister = false" @reload="reload"></Register>
     </transition>
-    <div class="w-100 pt-40 h-100" v-loading="loading">
+    <div class="w-full pt-40 h-100" v-loading="loading">
         <div class="container">
-            <div class="d-flex justify-content-space-between align-items-center w-100">
+            <div class="d-flex justify-space-between align-center w-full">
                 <h2>Ruleta items</h2>
                 <button class="btn submit" @click="showRegister = true">Registrar</button>
             </div>
         </div>
-        <div class="container pt-0 overflow-visible w-100">
+        <div class="container pt-0 overflow-visible w-full">
             <div class="table-container overflow-auto">
                 <table class="table">
                     <thead>

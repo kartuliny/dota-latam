@@ -2,7 +2,7 @@
 import ruletaWallpaper from '@/assets/images/fondo-ruleta.webp';
 import { onMounted, ref } from 'vue';
 import Roulette from '../shared/look/Roulette/Index.vue';
-import { SettingsState, SettingsStateView, Tier } from '../shared/store/setting/setting';
+import { SettingsState, SettingsStateView, Tier, useSettingStore } from '../shared/store/setting/setting';
 import { GetRouletteSettingUseCase } from '@/modules/roulette/application/GetRouletteSettingUseCase';
 import { GetRouletteItemsUseCase } from '@/modules/roulette/application/GetRouletteItemsUseCase';
 import { RouletteItem } from '@/modules/roulette/domain/models/RouletteItem';
@@ -12,6 +12,8 @@ import { formatNumber } from '@/utils/format/numbers';
 import { RunRouletteUseCase } from '@/modules/roulette/application/RunRouletteUseCase';
 import Confetti from './Confetti.vue';
 import { getRarityName } from '@/utils/format/items';
+import SteamTradeModal from './SteamTradeModal.vue';
+import { useSocketStore } from '../shared/store/socket/socket';
 
 const router = useRouter();
 const ruletaTypeSelected = ref<number>(0);
@@ -20,6 +22,9 @@ const tiers = ref<RouletteItemsResponse>({
     type1Items: [],
     type2Items: [],
 });
+
+const socketStore = useSocketStore();
+const setingStore = useSettingStore()
 const items = ref<RouletteItem[]>([]);
 const showConfetti = ref<boolean>(false);
 const settings = ref<SettingsState>();
@@ -57,6 +62,7 @@ const getSettings = async () => {
 
         rouletteSettings.value = { ...settings.value, types }
         loadingSection.value = false;
+        setingStore.showSteamTradeModal = !socketStore.userData.tradeUrl;
     } catch (error: any) {
         loadingSection.value = false;
     }
@@ -115,6 +121,7 @@ onMounted(() => {
 </script>
 
 <template>
+    <SteamTradeModal v-if="setingStore.showSteamTradeModal"></SteamTradeModal>
     <Confetti v-if="showConfetti">
         <transition name="grow">
             <div v-if="rouletteItemWinner" class="content">
@@ -127,17 +134,17 @@ onMounted(() => {
                         class="mx-auto result-image d-flex mb-10" alt="Resultado final" />
                     <h4 class="title mb-10 text-center mb-20">{{ rouletteItemWinner.name }}</h4>
                     <h1 class="price text-arcano mb-32">S/ {{ rouletteItemWinner.price }}</h1>
-                    <button @click="removeConfetti" class="btn submit  w-100">Aceptar</button>
+                    <button @click="removeConfetti" class="btn submit  w-full">Aceptar</button>
                 </div>
             </div>
         </transition>
     </Confetti>
     <!-- <div class="ruleta" :style="{ backgroundImagebackgroundImage: 'url(' + ruletaWallpaper + ')' }"> -->
-    <div v-if="loadingSection" class="h-100 w-100" v-loading="loadingSection"></div>
+    <div v-if="loadingSection" class="h-100 w-full" v-loading="loadingSection"></div>
     <template v-else>
         <div v-if="!rouletteSettings" class="ruleta">
             <div class="ruleta-background" :style="{ backgroundImage: 'url(' + ruletaWallpaper + ')' }"></div>
-            <div class="position-relative d-flex w-100 h-100 justify-content-center align-items-center">
+            <div class="position-relative d-flex w-full h-100 justify-center align-center">
                 <div class="text-center">
                     <h1 class="mb-20">Ruleta disponible solo</h1>
                     <h1 class="mb-20">para miembros del Discord</h1>
@@ -147,9 +154,9 @@ onMounted(() => {
         </div>
         <div v-else-if="rouletteSettings?.enabled" class="ruleta">
             <div class="ruleta-background" :style="{ backgroundImage: 'url(' + ruletaWallpaper + ')' }"></div>
-            <div class="position-relative w-80 mx-auto mt-100">
-                <div class="w-100 d-flex justify-content-space-between mb-40">
-                    <div class="w-40">
+            <div class="position-relative mx-auto mt-100" style="max-width: 1000px;">
+                <div class="w-full d-flex justify-space-between mb-40">
+                    <div class="w-2/5">
                         <h1 class="text-rojo-latam mb-20">Dota 2 Latam</h1>
                         <h1 class="mb-20">Ruleta</h1>
                         <hr class="mb-20 w-10 d-inline-block">
@@ -170,7 +177,7 @@ onMounted(() => {
                             </template>
                         </div>
                     </div>
-                    <div class="w-40">
+                    <div class="w-2/5">
                         <div>
                             <h1 class="mb-12 text-center" :class="{ [`${skews[ruletaTypeSelected].text}`]: true }">{{
                                 rouletteSettings.types![ruletaTypeSelected].name
@@ -196,7 +203,7 @@ onMounted(() => {
                     </div>
                 </div>
 
-                <div class="w-100 d-flex justify-content-center">
+                <div class="w-full d-flex justify-center">
                     <Roulette :start="start" @run="run" @start="changeStart"
                         :buttonText="'Girar por ' + formatNumber(rouletteSettings.types![ruletaTypeSelected].xp)"
                         :prizes="items" :index="indexSelected + 40" @done="done">
@@ -204,14 +211,14 @@ onMounted(() => {
                 </div>
             </div>
 
-            <div class="position-relative w-80 mx-auto">
-                <div class="d-flex w-100 justify-content-space-between">
-                    <div class="w-30">
+            <div class="position-relative w-3/4 mx-auto" style="max-width: 1000px;">
+                <div class="d-flex w-full justify-space-between">
+                    <div class="w-1/3 mr-20">
                         <div>
                             <h3 class="mb-20 text-center">Categoría 1</h3>
                             <hr class="mb-20">
                         </div>
-                        <div class="d-grid gap-05 w-100">
+                        <div class="sm:d-block md:d-grid gap-05 w-full">
                             <template v-for="(item) in tiers.type0Items" :key="index">
                                 <div class="position-relative">
                                     <div class="item">
@@ -226,12 +233,12 @@ onMounted(() => {
                             </template>
                         </div>
                     </div>
-                    <div class="w-30">
+                    <div class="w-1/3 mr-20">
                         <div>
                             <h3 class="mb-20 text-center">Categoría 2</h3>
                             <hr class="mb-20">
                         </div>
-                        <div class="d-grid gap-05 w-100">
+                        <div class="d-grid gap-05 w-full">
                             <template v-for="(item) in tiers.type1Items" :key="index">
                                 <div class="position-relative">
                                     <div class="item">
@@ -246,12 +253,12 @@ onMounted(() => {
                             </template>
                         </div>
                     </div>
-                    <div class="w-30">
+                    <div class="w-1/3">
                         <div>
                             <h3 class="mb-20 text-center">Categoría 3</h3>
                             <hr class="mb-20">
                         </div>
-                        <div class="d-grid gap-05 w-100">
+                        <div class="d-grid gap-05 w-full">
                             <template v-for="(item) in tiers.type2Items" :key="index">
                                 <div class="position-relative">
                                     <div class="item">
@@ -271,7 +278,7 @@ onMounted(() => {
             </div>
         </div>
         <div class="h-100" v-else>
-            <div class="d-flex w-100 h-100 justify-content-center align-items-center">
+            <div class="d-flex w-full h-100 justify-center align-center">
                 <h1>NO DISPONIBLE</h1>
             </div>
         </div>
@@ -403,40 +410,6 @@ onMounted(() => {
             }
         }
     }
-
-    // .type {
-    //     font-weight: 600;
-
-    //     &.rarity {
-    //         &-0 {
-    //             color: var(--comun);
-    //         }
-
-    //         &-1 {
-    //             color: var(--poco-comun);
-    //         }
-
-    //         &-2 {
-    //             color: var(--raro);
-    //         }
-
-    //         &-3 {
-    //             color: var(--mitico);
-    //         }
-
-    //         &-4 {
-    //             color: var(--legendario);
-    //         }
-
-    //         &-5 {
-    //             color: var(--inmortal);
-    //         }
-
-    //         &-6 {
-    //             color: var(--arcano);
-    //         }
-    //     }
-    // }
 }
 
 .type,
@@ -509,6 +482,7 @@ onMounted(() => {
     position: relative;
     width: 100%;
     height: 100%;
+    max-width: 140px;
     border-radius: 25%;
     cursor: pointer;
 

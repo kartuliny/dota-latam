@@ -135,8 +135,8 @@ const save = async () => {
 
 <template>
     <div class="container h-100">
-        <div class="d-flex align-items-center justify-content-space-between pb-24 position-sticky pt-40 bg">
-            <div class="d-flex align-items-center">
+        <div class="d-flex align-center justify-space-between pb-24 position-sticky pt-40 bg">
+            <div class="d-flex align-center">
                 <h2>Ruleta</h2>
                 <label class="switch ml-20" for="maincheckbox">
                     <input type="checkbox" id="maincheckbox" v-model="enabled" />

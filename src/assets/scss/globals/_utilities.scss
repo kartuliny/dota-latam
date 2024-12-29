@@ -1,6 +1,236 @@
-@use '../utils' as *;
+@use '../utils' as utils;
 
-@each $class, $color in $colors {
+@mixin property-value($property, $value) {
+    #{$property}: #{$value} !important;
+}
+
+@function escape-slash($str) {
+    $escaped-str: "";
+
+    @for $i from 1 through str-length($str) {
+        $char: str-slice($str, $i, $i);
+
+        @if $char =="/" {
+            $escaped-str: $escaped-str + "\\/";
+        }
+
+        @else {
+            $escaped-str: $escaped-str + $char;
+        }
+    }
+
+    @return $escaped-str;
+}
+
+$utilities: (
+    "font-weight": ("font-weight-bold": bold,
+        "font-weight-normal": normal,
+        "font-weight-light": light,
+        "font-weight-lighter": lighter,
+        "font-weight-lightest": lightest),
+    "display": ("d-flex": flex,
+        "d-block": block,
+        "d-inline-block": inline-block,
+        "d-grid": grid),
+    "flex-direction": ("flex-row": row,
+        "flex-row-reverse": row-reverse,
+        "flex-column": column,
+        "flex-column-reverse": column-reverse),
+    "vertical-align": ("align-baseline": baseline,
+        "align-top": top,
+        "align-middle": middle,
+        "align-bottom": bottom,
+        "align-text-bottom": text-bottom,
+        "align-text-top": text-top),
+    "justify-content": ("justify-start": flex-start,
+        "justify-center": center,
+        "justify-space-between": space-between,
+        "justify-end": flex-end,
+        "justify-evenly": space-evenly),
+    "align-items": ("align-center": center,
+        "align-end": flex-end,
+        "align-start": flex-start,
+        "align-baseline": baseline,
+        "align-stretch": stretch),
+    "float": ("float-start": left,
+        "float-end": right,
+        "float-none": none),
+    "position": ("position-relative": relative,
+        "position-absolute": absolute,
+        "position-sticky": sticky),
+    "align-self": ("align-self-start": flex-start,
+        "align-self-end": flex-end,
+        "align-self-center": center,
+        "align-self-baseline": baseline),
+    "text-align": ("text-center": center,
+        "text-left": left,
+        "text-justify": justify,
+        "text-right": right),
+    "width": ("w-0": "0px",
+        "w-px": "1px",
+        "w-1": "0.25rem",
+        "w-2": "0.5rem",
+        "w-3": "0.75rem",
+        "w-4": "1rem",
+        "w-5": "1.25rem",
+        "w-6": "1.5rem",
+        "w-7": "1.75rem",
+        "w-8": "2rem",
+        "w-9": "2.25rem",
+        "w-10": "2.5rem",
+        "w-11": "2.75rem",
+        "w-12": "3rem",
+        "w-14": "3.5rem",
+        "w-16": "4rem",
+        "w-20": "5rem",
+        "w-24": "6rem",
+        "w-28": "7rem",
+        "w-32": "8rem",
+        "w-36": "9rem",
+        "w-40": "10rem",
+        "w-44": "11rem",
+        "w-48": "12rem",
+        "w-52": "13rem",
+        "w-56": "14rem",
+        "w-60": "15rem",
+        "w-64": "16rem",
+        "w-72": "18rem",
+        "w-80": "20rem",
+        "w-96": "24rem",
+        "w-auto": "auto",
+        "w-1/2": "50%",
+        "w-1/3": "33.333333%",
+        "w-2/3": "66.666667%",
+        "w-1/4": "25%",
+        "w-2/4": "50%",
+        "w-3/4": "75%",
+        "w-1/5": "20%",
+        "w-2/5": "40%",
+        "w-3/5": "60%",
+        "w-4/5": "80%",
+        "w-1/6": "16.666667%",
+        "w-2/6": "33.333333%",
+        "w-3/6": "50%",
+        "w-4/6": "66.666667%",
+        "w-5/6": "83.333333%",
+        "w-1/12": "8.333333%",
+        "w-2/12": "16.666667%",
+        "w-3/12": "25%",
+        "w-4/12": "33.333333%",
+        "w-5/12": "41.666667%",
+        "w-6/12": "50%",
+        "w-7/12": "58.333333%",
+        "w-8/12": "66.666667%",
+        "w-9/12": "75%",
+        "w-10/12": "83.333333%",
+        "w-11/12": "91.666667%",
+        "w-full": "100%",
+        "w-screen": "100vw",
+        "w-svw": "100svw",
+        "w-lvw": "100lvw",
+        "w-dvw": "100dvw",
+        "w-min": "min-content",
+        "w-max": "max-content",
+        "w-fit": "fit-content"
+    ),
+// grid-cols-1	grid-template-columns: repeat(1, minmax(0, 1fr));
+// grid-cols-2	grid-template-columns: repeat(2, minmax(0, 1fr));
+// grid-cols-3	grid-template-columns: repeat(3, minmax(0, 1fr));
+// grid-cols-4	grid-template-columns: repeat(4, minmax(0, 1fr));
+// grid-cols-5	grid-template-columns: repeat(5, minmax(0, 1fr));
+// grid-cols-6	grid-template-columns: repeat(6, minmax(0, 1fr));
+// grid-cols-7	grid-template-columns: repeat(7, minmax(0, 1fr));
+// grid-cols-8	grid-template-columns: repeat(8, minmax(0, 1fr));
+// grid-cols-9	grid-template-columns: repeat(9, minmax(0, 1fr));
+// grid-cols-10	grid-template-columns: repeat(10, minmax(0, 1fr));
+// grid-cols-11	grid-template-columns: repeat(11, minmax(0, 1fr));
+// grid-cols-12	grid-template-columns: repeat(12, minmax(0, 1fr));
+// grid-cols-none	grid-template-columns: none;
+// grid-cols-subgrid	grid-template-columns: subgrid;
+    "grid": (
+        "grid-cols-1": "grid-template-columns: repeat(1, minmax(0, 1fr))",
+        "grid-cols-2": "grid-template-columns: repeat(2, minmax(0, 1fr))",
+        "grid-cols-3": "grid-template-columns: repeat(3, minmax(0, 1fr))",
+        "grid-cols-4": "grid-template-columns: repeat(4, minmax(0, 1fr))",
+        "grid-cols-5": "grid-template-columns: repeat(5, minmax(0, 1fr))",
+        "grid-cols-6": "grid-template-columns: repeat(6, minmax(0, 1fr))",
+        "grid-cols-7": "grid-template-columns: repeat(7, minmax(0, 1fr))",
+        "grid-cols-8": "grid-template-columns: repeat(8, minmax(0, 1fr))",
+        "grid-cols-9": "grid-template-columns: repeat(9, minmax(0, 1fr))",
+        "grid-cols-10": "grid-template-columns: repeat(10, minmax(0, 1fr))",
+        "grid-cols-11": "grid-template-columns: repeat(11, minmax(0, 1fr))",
+        "grid-cols-12": "grid-template-columns: repeat(12, minmax(0, 1fr))",
+        "grid-cols-none": "grid-template-columns: none",
+        "grid-cols-subgrid": "grid-template-columns: subgrid",
+    ),
+    "line-height": ("lh-1": "1",
+        "lh-2": "1.25",
+        "lh-3": "1.5",
+        "lh-4": "1.75",
+        "lh-5": "2",
+        "lh-6": "2.5",
+        "lh-7": "3",
+        "lh-8": "4",
+        "lh-9": "5",
+        "lh-10": "6"),
+    "shadow": ("shadow": "0 0.5rem 1rem rgba(0, 0, 0, 0.15)",
+        "shadow-sm": "0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)",
+        "shadow-lg": "0 1rem 3rem rgba(0, 0, 0, 0.175)"
+    ),
+    "border": ("border": "1px solid rgba(0, 0, 0, 0.15)",
+        "border-0": "border: 0",
+        "border-top": "border-top: 1px solid rgba(0, 0, 0, 0.15)",
+        "border-top-0": "border-top: 0",
+        "border-end": "border-right: 1px solid rgba(0, 0, 0, 0.15)",
+        "border-end-0": "border-right: 0",
+        "border-bottom": "border-bottom: 1px solid rgba(0, 0, 0, 0.15)",
+        "border-bottom-0": "border-bottom: 0",
+        "border-start": "border-left: 1px solid rgba(0, 0, 0, 0.15)",
+        "border-start-0": "border-left: 0"
+    )
+);
+
+
+@each $utility, $classes in $utilities {
+    @each $class, $definition in $classes {
+        $escaped-class: $class;
+
+        @if str-index($escaped-class, "/") {
+            $escaped-class: escape-slash($escaped-class);
+        }
+
+        // Media queries para breakpoints "up"
+        @each $breakpoint, $value in utils.$breakpoints-up {
+            @media (min-width: #{$value}) {
+                .#{$breakpoint}\:#{$escaped-class} {
+                    @if str-index($definition, ":") {
+                        $property: str-slice($definition, 1, str-index($definition, ":") - 1);
+                        $value: str-slice($definition, str-index($definition, ":") + 1);
+                        @include property-value($property, $value);
+                    }
+
+                    @else {
+                        #{$utility}: #{$definition} !important;
+                    }
+                }
+            }
+        }
+
+        .#{$escaped-class} {
+            @if str-index($definition, ":") {
+                $property: str-slice($definition, 1, str-index($definition, ":") - 1);
+                $value: str-slice($definition, str-index($definition, ":") + 1);
+                @include property-value($property, $value);
+            }
+
+            @else {
+                #{$utility}: #{$definition};
+            }
+        }
+    }
+}
+
+@each $class, $color in utils.$colors {
     .border-#{$class} {
         border: 1px solid $color !important;
     }
@@ -10,49 +240,9 @@
     }
 }
 
-.align-baseline {
-    vertical-align: baseline !important;
-}
-
-.align-top {
-    vertical-align: top !important;
-}
-
-.align-middle {
-    vertical-align: middle !important;
-}
-
-.align-bottom {
-    vertical-align: bottom !important;
-}
-
-.align-text-bottom {
-    vertical-align: text-bottom !important;
-}
-
-.align-text-top {
-    vertical-align: text-top !important;
-}
-
-.align-self-start {
-    align-self: flex-start !important;
-}
-
-.align-self-end {
-    align-self: flex-end !important;
-}
-
-.align-self-baseline {
-    align-self: baseline !important;
-}
-
-.align-self-center {
-    align-self: center !important;
-}
-
+//TODO
 .d-grid {
     display: grid !important;
-    grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
 }
 
@@ -70,139 +260,37 @@
     gap: 0.5rem !important;
 }
 
-.justify-start {
-    justify-content: flex-start !important;
-}
-
-.d-flex {
-    display: flex !important;
-}
-
-.justify-content-center {
-    justify-content: center !important;
-}
-
-.justify-content-space-between {
-    justify-content: space-between !important;
-}
-
-.justify-content-evenly {
-    justify-content: space-evenly !important;
-}
-
-.align-items-center {
-    align-items: center !important;
-}
-
-.align-items-end {
-    align-items: flex-end !important;
-}
-
-.d-inline-block {
-    display: inline-block !important;
-}
-
-.position-relative {
-    position: relative !important;
-}
-
-.position-absolute {
-    position: absolute !important;
-}
-
+//TODO
 .position-sticky {
     position: sticky !important;
     top: 0;
     z-index: 1;
 }
 
-.float-start {
-    float: left !important;
-}
-
-.float-end {
-    float: right !important;
-}
-
-.float-none {
-    float: none !important;
-}
-
 .text-shadow-rojo-latam {
     text-shadow: var(--text-shadow-rojo-latam) !important;
 }
 
-.shadow {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-}
+// .shadow {
+//     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+// }
 
-.shadow-sm {
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-}
+// .shadow-sm {
+//     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+// }
 
-.shadow-lg {
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
-}
+// .shadow-lg {
+//     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+// }
 
-.border {
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
-}
-
-.border-0 {
-    border: 0 !important;
-}
-
-.border-top {
-    border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
-}
-
-.border-top-0 {
-    border-top: 0 !important;
-}
-
-.border-end {
-    border-right: 1px solid rgba(0, 0, 0, 0.15) !important;
-}
-
-.border-end-0 {
-    border-right: 0 !important;
-}
-
-.border-bottom {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
-}
-
-.border-bottom-0 {
-    border-bottom: 0 !important;
-}
-
-.border-start {
-    border-left: 1px solid rgba(0, 0, 0, 0.15) !important;
-}
-
-.border-start-0 {
-    border-left: 0 !important;
+.border-radius-50-percent {
+    border-radius: 50%;
 }
 
 .border-radius-10 {
     border-radius: 10px;
 }
 
-.border-radius-50-percent {
-    border-radius: 50%;
-}
-
-.text-center {
-    text-align: center !important;
-}
-
-.text-left {
-    text-align: left;
-}
-
-.strong {
-    font-weight: bold;
-}
 
 .h-vh70 {
     height: 70vh !important;
@@ -212,49 +300,49 @@
     height: 50vh !important;
 }
 
-.w-20 {
-    width: 20% !important;
-}
+// .w-20 {
+//     width: 20% !important;
+// }
 
-.w-25 {
-    width: 25% !important;
-}
+// .w-25 {
+//     width: 25% !important;
+// }
 
-.w-30 {
-    width: 30% !important;
-}
+// .w-30 {
+//     width: 30% !important;
+// }
 
-.w-33 {
-    width: 33% !important;
-}
+// .w-33 {
+//     width: 33% !important;
+// }
 
-.w-40 {
-    width: 40% !important;
-}
+// .w-40 {
+//     width: 40% !important;
+// }
 
-.w-50 {
-    width: 50% !important;
-}
+// .w-50 {
+//     width: 50% !important;
+// }
 
-.w-75 {
-    width: 75% !important;
-}
+// .w-75 {
+//     width: 75% !important;
+// }
 
-.w-80 {
-    width: 75% !important;
-}
+// .w-80 {
+//     width: 75% !important;
+// }
 
-.w-100 {
-    width: 100% !important;
-}
+// .w-100 {
+//     width: 100% !important;
+// }
 
-.w-5 {
-    width: 5% !important;
-}
+// .w-5 {
+//     width: 5% !important;
+// }
 
-.w-10 {
-    width: 10% !important;
-}
+// .w-10 {
+//     width: 10% !important;
+// }
 
 .mh-100 {
     min-height: 100%;
@@ -293,8 +381,8 @@
 }
 
 .mx-auto {
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .width-max-content {
@@ -340,10 +428,13 @@ hr {
     background: linear-gradient(to right, var(--poco-comun-light), var(--poco-comun), var(--poco-comun-dark));
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
     transition: opacity 0.3s;
 }
-.fade-enter-from, .fade-leave-to {
+
+.fade-enter-from,
+.fade-leave-to {
     opacity: 0;
 }
 
@@ -380,4 +471,16 @@ hr {
     &-6 {
         color: var(--arcano);
     }
+}
+
+.object-fit-cover {
+    object-fit: cover !important;
+}
+
+.object-fit-contain {
+    object-fit: contain !important;
+}
+
+.roboto {
+    font-family: Roboto, sans-serif !important;
 }

@@ -16,7 +16,7 @@ export const useSocketStore = defineStore('socket', {
     state: () => ({
         socket: null as Socket | null,
         rouletteWinners: [] as RouletteSocketData[],
-        userData: { freeSpin: 0, xp: '0' } as UserData, 
+        userData: { freeSpin: 0, xp: '0', tradeUrl: '' } as UserData, 
         messages: [] as any[],
     }),
     actions: {

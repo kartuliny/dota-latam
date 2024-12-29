@@ -3,9 +3,13 @@ import { defineStore } from "pinia";
 export const useSettingStore = defineStore("setting", {
     state: (): SettingsState => ({
         types: {} as Types,
-        enabled: false
+        enabled: false,
+        showSteamTradeModal: false
     }),
     actions: {
+        toggleShowSteamTradeModal() {
+            this.showSteamTradeModal = !this.showSteamTradeModal;
+        },
         setSetting(setting: SettingsState) {
             this.$patch({
                 types: setting.types,
@@ -47,6 +51,7 @@ export type Types = {
 export type SettingsState = {
     types?: Types;
     enabled: boolean;
+    showSteamTradeModal: boolean;
 };
 
 export type Settings = {

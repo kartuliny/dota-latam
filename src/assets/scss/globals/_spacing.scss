@@ -1,10 +1,10 @@
-@use '../utils' as *;
+@use '../utils' as utils;
 
-@each $mb in $margin {
+@each $mb in utils.$margin {
     $number: calc($mb / ($mb * 0 + 1px));
 
     .mb-#{$number} {
-        margin-bottom: $mb !important;
+        margin-bottom: $mb;
     }
 
     .ml-#{$number} {
@@ -16,16 +16,71 @@
     }
 
     .mt-#{$number} {
-        margin-top: $mb !important;
+        margin-top: $mb;
     }
 
     .my-#{$number} {
-        margin-top: $mb !important;
-        margin-bottom: $mb !important;
+        margin-top: $mb;
+        margin-bottom: $mb;
+    }
+    
+    @each $breakpoint, $value in utils.$breakpoints-up {
+        @media (min-width: #{$value}) {
+            .#{$breakpoint}\:mb-#{$number} {
+                margin-bottom: $mb !important;
+            }
+
+            .#{$breakpoint}\:ml-#{$number} {
+                margin-left: $mb !important;
+            }
+
+            .#{$breakpoint}\:mr-#{$number} {
+                margin-right: $mb !important;
+            }
+
+            .#{$breakpoint}\:mt-#{$number} {
+                margin-top: $mb !important;
+            }
+
+            .#{$breakpoint}\:my-#{$number} {
+                margin-top: #{$number} !important;
+                margin-bottom: $mb !important;
+            }
+
+            .#{$breakpoint}\:mx-#{$number} {
+                margin-left: #{$number} !important;
+                margin-right: $mb !important;
+            }
+        }
     }
 }
 
-@each $pd in $padding {
+// @each $mb in $margin {
+//     $number: calc($mb / ($mb * 0 + 1px));
+
+//     .mb-#{$number} {
+//         margin-bottom: $mb !important;
+//     }
+
+//     .ml-#{$number} {
+//         margin-left: $mb;
+//     }
+
+//     .mr-#{$number} {
+//         margin-right: $mb;
+//     }
+
+//     .mt-#{$number} {
+//         margin-top: $mb !important;
+//     }
+
+//     .my-#{$number} {
+//         margin-top: $mb !important;
+//         margin-bottom: $mb !important;
+//     }
+// }
+
+@each $pd in utils.$padding {
     $number: calc($pd / ($pd * 0 + 1px));
 
     .p-#{$number} {

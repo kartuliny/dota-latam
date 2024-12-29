@@ -5,10 +5,12 @@ import { formatNumber } from '@/utils/format/numbers';
 import { computed, onMounted, onUnmounted, reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useSocketStore } from '../store/socket/socket';
+import { useSettingStore } from '../store/setting/setting';
 
 const router = useRouter();
 const route = useRoute();
 const socketStore = useSocketStore();
+const settingStore = useSettingStore();
 
 const rouletteWinners = computed(() => socketStore.rouletteWinners);
 const userData = computed(() => socketStore.userData);
@@ -83,7 +85,7 @@ const logout = async () => {
 </script>
 
 <template>
-    <div class="w-100">
+    <div class="w-full">
         <nav class="navbar" :class="{ hidden: !scrollState.isNavbarVisible }">
             <img class="logo" src="@/assets/images/logo_final.webp" width="70" alt="Dota 2">
             <ul>
@@ -95,7 +97,7 @@ const logout = async () => {
             <transition name="fade">
                 <div class="profile">
                     <template v-if="userData.username">
-                        <div class="pointer d-flex justify-content-center align-items-center" @click="toggleDropdown">
+                        <div class="pointer d-flex justify-center align-center" @click="toggleDropdown">
                             <h5 class="fs-4" style="min-width: 180px;text-align: right; padding-right: 20px;">
                                 {{ formatNumber(Number(userData.xp)) }}
                                 <span class="text-amarillo-latam strong">EXP</span>
@@ -108,7 +110,7 @@ const logout = async () => {
                         </div>
                         <div class="dropdown" :class="{ 'active': dropdownOpen }" @mouseleave="closeDropdown">
                             <a href="#" class="dropdown-link">Perfil</a>
-                            <a href="#" class="dropdown-link">Steam trade URL</a>
+                            <a href="#" @click="settingStore.toggleShowSteamTradeModal()" class="dropdown-link">Steam trade URL</a>
                             <a href="#" class="dropdown-link" @click="logout">Cerrar sesión</a>
                         </div>
                     </template>
@@ -119,7 +121,7 @@ const logout = async () => {
             <div class="prizes" :class="{ top0: scrollState.isNavbarVisible }">
                 <div class="prize position-relative ml-100" v-for="(winner) in rouletteWinners"
                     v-if="rouletteWinners.length">
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-center">
                         <div>
                             <span class="fs-6 bold username mr-10">{{ winner.user.displayName }}</span>
                             <i class="bi bi-chevron-double-right mr-10 text-amarillo-latam"></i>

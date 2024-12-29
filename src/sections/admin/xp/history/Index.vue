@@ -24,8 +24,8 @@ onMounted(() => {
 </script>
 <template>
     <div class="container h-100" v-loading="loading">
-        <div class="d-flex align-items-center justify-content-space-between pb-24 position-sticky pt-40 bg">
-            <div class="d-flex align-items-center">
+        <div class="d-flex align-center justify-space-between pb-24 position-sticky pt-40 bg">
+            <div class="d-flex align-center">
                 <h2>Historial XP</h2>
             </div>
         </div>

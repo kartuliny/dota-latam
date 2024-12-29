@@ -1,27 +1,29 @@
 @use 'functions' as f;
+@use "sass:map";
 
 //700px 900px 1440px
 $breakpoints-up: (
-    "medium": 43.75em,
-    "large": 53.25em,
-    "xlarge": 90em
+    "sm": 30.75em,
+    "md": 43.75em,
+    "lg": 53.25em,
+    "xlg": 90em
 );
 
 // 699.98px 899.98px 1439.98px
-$brakpoints-down: (
-    "small": 43.7485em,
-    "medium": 53.24875em,
-    "large": 89.99875em
+$breakpoints-down: (
+    "sm": 43.7485em,
+    "md": 53.24875em,
+    "lg": 89.99875em
 );
 
 @mixin breakpoints($size) {
-    @media (min-width: map-get($breakpoints-up, $size)) {
+    @media (min-width: map.get($breakpoints-up, $size)) {
         @content;
     }
 }
 
 @mixin breakpoints-down($size) {
-    @media (max-width: map-get($breakpoints-up, $size)) {
+    @media (max-width: map.get($breakpoints-down, $size)) {
         @content;
     }
 }
