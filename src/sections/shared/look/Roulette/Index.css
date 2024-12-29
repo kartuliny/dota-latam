@@ -24,7 +24,7 @@
   
   .roulette.horizontal {
     max-width: 1280px;
-    border-radius: 30px;
+    border-radius: 12px;
     border: 2px solid rgba(232, 99, 17, 0.75);
     box-shadow: 
         0 0 10px rgba(232, 99, 17, 0.75),  
@@ -32,12 +32,6 @@
         0 0 30px rgba(232, 99, 17, 0.75),
         0 0 40px rgba(232, 99, 17, 0.5);
     animation: neon-pulse 2s infinite;
-  }
-  
-  @media (max-width: 1280px) {
-    .roulette.horizontal {
-      border-radius: 0px;
-    }
   }
   
   .roulette.vertical {
@@ -66,8 +60,7 @@
   .spin-button {
     position: relative;
     z-index: 2;
-    width: 350px;
-    font-size: 21px;
+    font-size: 18px;
     border-radius: 41px;
     padding: 24px 35px;
     box-shadow: 0px 2px 0 2px rgba(253, 87, 54, 0.7);

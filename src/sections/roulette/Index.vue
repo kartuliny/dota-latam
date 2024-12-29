@@ -154,9 +154,9 @@ onMounted(() => {
         </div>
         <div v-else-if="rouletteSettings?.enabled" class="ruleta">
             <div class="ruleta-background" :style="{ backgroundImage: 'url(' + ruletaWallpaper + ')' }"></div>
-            <div class="position-relative mx-auto mt-100" style="max-width: 1000px;">
-                <div class="w-full d-flex justify-space-between mb-40">
-                    <div class="w-2/5">
+            <div class="position-relative w-10/12 mx-auto mt-100" style="max-width: 1000px;">
+                <div class="d-block w-full md:d-flex md:justify-space-between mb-40">
+                    <div class="mb-20 text-center w-full md:w-2/5 md:text-left md:mb-0">
                         <h1 class="text-rojo-latam mb-20">Dota 2 Latam</h1>
                         <h1 class="mb-20">Ruleta</h1>
                         <hr class="mb-20 w-10 d-inline-block">
@@ -177,7 +177,7 @@ onMounted(() => {
                             </template>
                         </div>
                     </div>
-                    <div class="w-2/5">
+                    <div class="text-center w-full md:w-2/5 md:text-left">
                         <div>
                             <h1 class="mb-12 text-center" :class="{ [`${skews[ruletaTypeSelected].text}`]: true }">{{
                                 rouletteSettings.types![ruletaTypeSelected].name
@@ -215,7 +215,7 @@ onMounted(() => {
                 <div class="d-flex w-full justify-space-between">
                     <div class="w-1/3 mr-20">
                         <div>
-                            <h3 class="mb-20 text-center">Categoría 1</h3>
+                            <h3 class="mb-20 text-center lh-3">Categoría 1</h3>
                             <hr class="mb-20">
                         </div>
                         <div class="sm:d-block md:d-grid gap-05 w-full">
@@ -235,7 +235,7 @@ onMounted(() => {
                     </div>
                     <div class="w-1/3 mr-20">
                         <div>
-                            <h3 class="mb-20 text-center">Categoría 2</h3>
+                            <h3 class="mb-20 text-center lh-3">Categoría 2</h3>
                             <hr class="mb-20">
                         </div>
                         <div class="d-grid gap-05 w-full">
@@ -255,7 +255,7 @@ onMounted(() => {
                     </div>
                     <div class="w-1/3">
                         <div>
-                            <h3 class="mb-20 text-center">Categoría 3</h3>
+                            <h3 class="mb-20 text-center lh-3">Categoría 3</h3>
                             <hr class="mb-20">
                         </div>
                         <div class="d-grid gap-05 w-full">
