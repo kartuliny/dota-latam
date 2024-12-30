@@ -25,10 +25,12 @@ export const useSocketStore = defineStore('socket', {
         },
         connectSocket() {
             if (!this.socket) {
-                this.socket = io(import.meta.env.VITE_WEBSOKET_BASE_URL, {
+                this.socket = io(import.meta.env.VITE_WEBSOCKET_BASE_URL, {
                     query: {
                         cookie: document.cookie,
                     },
+                    path: '/ws/socket.io', // Asegúrate de que el path coincida con el que configuraste en el backend
+                    transports: ['websocket']
                 });
 
                 this.socket.on('connect', () => {
