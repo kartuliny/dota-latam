@@ -218,7 +218,7 @@ onMounted(() => {
                             <h3 class="mb-20 text-center lh-3">Categoría 1</h3>
                             <hr class="mb-20">
                         </div>
-                        <div class="sm:d-block md:d-grid gap-05 w-full">
+                        <div class="sm:d-block md:d-grid gap-05 w-full lg:grid-cols-2">
                             <template v-for="(item) in tiers.type0Items" :key="index">
                                 <div class="position-relative">
                                     <div class="item">
@@ -238,7 +238,7 @@ onMounted(() => {
                             <h3 class="mb-20 text-center lh-3">Categoría 2</h3>
                             <hr class="mb-20">
                         </div>
-                        <div class="d-grid gap-05 w-full">
+                        <div class="d-grid gap-05 w-full lg:grid-cols-2">
                             <template v-for="(item) in tiers.type1Items" :key="index">
                                 <div class="position-relative">
                                     <div class="item">
@@ -258,7 +258,7 @@ onMounted(() => {
                             <h3 class="mb-20 text-center lh-3">Categoría 3</h3>
                             <hr class="mb-20">
                         </div>
-                        <div class="d-grid gap-05 w-full">
+                        <div class="d-grid gap-05 w-full lg:grid-cols-2">
                             <template v-for="(item) in tiers.type2Items" :key="index">
                                 <div class="position-relative">
                                     <div class="item">

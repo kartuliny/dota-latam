@@ -13,8 +13,8 @@ export class ApiUserRepository extends BaseRepository implements UserRepository 
     async updateTradeUrl(tradeUrl: string): Promise<void> {
         const headers = await this.getHeaders();
 
-        const url = this.getEndpoint('/api/profile/tradeUrl/'+ tradeUrl);
-        await this.makeRequest<void>(url, { method: 'GET', headers,  });
+        const url = this.getEndpoint('/api/profile/tradeUrl');
+        await this.makeRequest<void>(url, { method: 'POST', headers, body: JSON.stringify({ tradeUrl }) });
     }
 
     async logout(): Promise<void> {

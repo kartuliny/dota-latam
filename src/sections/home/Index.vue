@@ -90,7 +90,7 @@ const boosters: BoosterItem[] = [
         <nav class="front-page section red mh-80">
             <div :style="{ backgroundImage: 'url(' + dotaWallpaper + ')' }" class="dota-wallpaper-1"></div>
             <div class="gradient-bottom"></div>
-            <img class="dota-profile-1" src="@/assets/images/roshan.webp" alt="dota-1" style="display: none;">
+            <img class="d-none dota-profile-1 lg:d-block" src="@/assets/images/roshan.webp" alt="dota-1">
             <section class="section pt-48 w-10/12 text-center lg:text-left">
                 <div class="d-flex align-center justify-center lg:justify-start">
                     <a href="https://discord.gg/dota-2-oficial" target="_blank">
@@ -133,12 +133,12 @@ const boosters: BoosterItem[] = [
                 </div>
             </section>
         </nav>
-        <section class="section mh-50">
+        <section class="section mh-50 lg:mb-100">
             <h2 class="text-center mb-16">Boosters</h2>
-            <hr class="hr-small mb-32 w-5 d-inline-block">
+            <hr class="hr-small w-5 d-inline-block">
             <!-- <p class="fs-3 text-center mb-32">Te ofrecemos confianza y profesionalismo de la mano de nuestros Boosters Inmortals, capacitados para mejorar tu MMR, KDA y maestría, en el mejor tiempo, precio y calidad ✨</p> -->
 
-            <div class="d-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 mb-40 w-10/12 mx-auto mt-20">
+            <div class="d-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 w-10/12 mt-20 mb-56 mx-auto">
                 <div class="card" v-for="booster in boosters">
                     <div class="avatar"><img :src="booster.avatar" alt="Profile 1" width="60"></div>
                     <div class="info">
@@ -159,13 +159,13 @@ const boosters: BoosterItem[] = [
                 </div>
             </div>
         </section>
-        <section class="section mh-70 w-10/12">
+        <section class="section mh-50 w-10/12 lg:mb-100">
             <h2 class="text-center mb-16">Experiencia</h2>
-            <hr class="hr-small mb-56 w-5 d-inline-block">
+            <hr class="hr-small w-5 d-inline-block">
 
-            <div class="d-block mt-20 text-center">
+            <div class="d-block mt-20 mb-56 text-center lg:d-flex lg:justify-space-between lg:align-center lg:w-10/12 mx-auto">
                 <div>
-                    <img class="text-center" src="@/assets/images/tiny.png" alt="tiny" width="150px">
+                    <img class="text-center tiny-image" src="@/assets/images/tiny.png" alt="tiny">
                 </div>
                 <div class="lh-2">
                     <h4 class="mb-40">¿Cómo funciona la <span
@@ -204,47 +204,47 @@ const boosters: BoosterItem[] = [
             </div>
         </section>
 
-        <section class="section mh-70" style="display: none;">
+        <section class="section mh-40 lg:mb-100">
             <h2 class="text-center mb-16">Servicios</h2>
-            <hr class="hr-small mb-56 w-5 d-inline-block">
+            <hr class="hr-small w-5 d-inline-block">
 
-            <div class="score">
-                <div class="score-item">
+            <div class="d-grid gap-8 grid-cols-2 md:grid-cols-3 mt-32 w-10/12 mx-auto mt-20 mb-56">
+                <div class="text-center">
                     <h3>+250</h3>
                     <span>Intermediarios</span>
                 </div>
-                <div class="score-item">
+                <div class="text-center">
                     <h3>+120</h3>
                     <span>Clientes boost</span>
                 </div>
-                <div class="score-item">
+                <div class="text-center">
                     <h3>+17500</h3>
                     <span>Miembros</span>
                 </div>
-                <div class="score-item">
+                <div class="text-center">
                     <h3>100</h3>
                     <span>Clientes</span>
                 </div>
-                <div class="score-item">
+                <div class="text-center">
                     <h3>100</h3>
                     <span>Clientes</span>
                 </div>
-                <div class="score-item">
+                <div class="text-center">
                     <h3>100</h3>
                     <span>Clientes</span>
                 </div>
             </div>
         </section>
-        <section class="section mh-70" style="display: none;">
+        <section class="section mh-70">
             <h2 class="text-center mb-16">Unete a nuestro Discord</h2>
-            <hr class="hr-small mb-56 w-5 d-inline-block">
-            <div class="d-flex justify-center">
+            <hr class="hr-small w-5 d-inline-block">
+            <div class="d-flex justify-center mt-20 mb-56">
                 <iframe src="https://discord.com/widget?id=758765323444027434&theme=dark" id="discord-widget"
-                    allowtransparency="true" frameborder="0"
+                    allowtransparency="true" frameborder="0" height="500"
                     sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
             </div>
         </section>
-        <Footer style="display: none;" />
+        <Footer />
     </div>
 </template>
 
@@ -345,24 +345,15 @@ const boosters: BoosterItem[] = [
     opacity: 0.92;
     height: 100%;
     object-fit: cover;
-    // background: url('src/assets/images/dota-wallpaper-2.jpg');
-
     background-size: cover;
     background-position: center bottom;
 }
 
-.score {
-    display: grid;
-    text-align: center;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4.5rem;
-}
-
 .dota-profile-1 {
     position: absolute;
-    right: 0;
-    bottom: -30px;
-    width: 450px;
+    right: 4%;
+    bottom: 10%;
+    width: 440px;
 }
 
 body {

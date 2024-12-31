@@ -272,7 +272,7 @@ const newPrizes = computed(() => {
             </RoulettePro>
         </div>
         <div class="roulette-actions">
-            <button @click="handleStart" className="spin-button" type="button">
+            <button @click="handleStart" className="spin-button" type="button" v-if="!spinning">
                 {{ freeSpin ? 'Gratis ('+freeSpin+')' : props.buttonText }}
             </button>
         </div>
