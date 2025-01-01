@@ -515,7 +515,7 @@ onMounted(() => {
         padding-bottom: 10px;
         text-align: center;
         position: absolute;
-        z-index: 100;
+        z-index: 50;
         width: 96%;
         bottom: 5px;
         right: 0;

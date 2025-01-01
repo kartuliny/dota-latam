@@ -14,7 +14,7 @@ const settingStore = useSettingStore();
 
 const rouletteWinners = computed(() => socketStore.rouletteWinners);
 const userData = computed(() => socketStore.userData);
-
+const hideNavbar = ref<boolean>(true);
 
 const pages = [
     { name: 'Inicio', path: '/', icon: 'bi bi-house-fill' },
@@ -61,6 +61,7 @@ onUnmounted(() => {
 });
 
 const goToPage = (path: string) => {
+    hideNavbar.value = true;
     router.push(path);
 }
 
@@ -74,6 +75,7 @@ const closeDropdown = () => {
 
 const logout = async () => {
     try {
+        hideNavbar.value = true
         await LogoutUseCase.invoke();
         localStorage.removeItem('token');
         router.push({ name: 'signin' });
@@ -87,11 +89,30 @@ const logout = async () => {
 <template>
     <div class="w-full">
         <nav class="navbar" :class="{ hidden: !scrollState.isNavbarVisible }">
+            <div class="lg:d-none position-relative w-full d-flex justify-space-between px-24">
+                <h2>Dota 2 Latam</h2>
+                <i class="hamburger pointer fs-1 bi" :class="[{ 'bi-list': hideNavbar, 'bi-x': !hideNavbar }]"
+                    @click="hideNavbar = !hideNavbar"></i>
+            </div>
             <img class="logo" src="@/assets/images/logo_final.webp" width="70" alt="Dota 2">
-            <ul>
+            <ul :class="{ hidden: hideNavbar || !scrollState.isNavbarVisible }">
+                <div class="lg:d-none position-relative d-flex px-32 pt-10 mb-32 align-center">
+                    <img class="w-8"
+                        :src="`https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`" alt="profile">
+                    <h4 class="username ml-8 mr-20">{{ userData.displayName }}</h4>
+
+                    {{ formatNumber(Number(userData.xp)) }} <span class="text-amarillo-latam strong ml-8">EXP</span>
+
+                </div>
                 <li v-for="page in pages" :class="{ active: isActive(page.path) }" @click="goToPage(page.path)">
                     <i :class="page.icon" class="mr-4"></i>
                     {{ page.name }}
+                </li>
+                <li class="lg:d-none" @click="settingStore.toggleShowSteamTradeModal(); hideNavbar = true">
+                    Steam trade URL
+                </li>
+                <li class="lg:d-none" @click="logout">
+                    Cerrar sesión
                 </li>
             </ul>
             <transition name="fade">
@@ -110,7 +131,8 @@ const logout = async () => {
                         </div>
                         <div class="dropdown" :class="{ 'active': dropdownOpen }" @mouseleave="closeDropdown">
                             <a href="#" class="dropdown-link">Perfil</a>
-                            <a href="#" @click="settingStore.toggleShowSteamTradeModal()" class="dropdown-link">Steam trade URL</a>
+                            <a href="#" @click="settingStore.toggleShowSteamTradeModal()" class="dropdown-link">Steam
+                                trade URL</a>
                             <a href="#" class="dropdown-link" @click="logout">Cerrar sesión</a>
                         </div>
                     </template>
@@ -132,7 +154,7 @@ const logout = async () => {
                                 <img :src="winner.item.url">
                                 <span class="type" :class="`rarity-${winner.item.rarity}`">{{
                                     getRarityName(winner.item.rarity)
-                                }}</span>
+                                    }}</span>
 
                             </div>
                         </div>
@@ -144,6 +166,8 @@ const logout = async () => {
     </div>
 </template>
 <style lang="scss" scoped>
+@use '@/assets/scss/utils' as *;
+
 .prizes {
     display: flex;
     align-items: center;
@@ -152,10 +176,14 @@ const logout = async () => {
     z-index: 99;
     left: 0;
     color: white;
-    height: 80px;
+    height: 60px;
     overflow: hidden;
     /* Evita que se vea fuera del contenedor */
     transition: transform 0.5s ease, opacity 0.5s ease;
+
+    @include breakpoints("lg") {
+        height: 80px;
+    }
 
     &.top0 {
         transform: translateY(100%);
@@ -223,7 +251,6 @@ i {
         border-radius: 0%;
         position: absolute;
         background: linear-gradient(to bottom, #747474 50%, #747474 50%);
-
     }
 
     .title {

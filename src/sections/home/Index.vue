@@ -91,7 +91,7 @@ const boosters: BoosterItem[] = [
             <div :style="{ backgroundImage: 'url(' + dotaWallpaper + ')' }" class="dota-wallpaper-1"></div>
             <div class="gradient-bottom"></div>
             <img class="d-none dota-profile-1 lg:d-block" src="@/assets/images/roshan.webp" alt="dota-1">
-            <section class="section pt-48 w-10/12 text-center lg:text-left">
+            <section class="section lg:pt-48 w-10/12 text-center lg:text-left">
                 <div class="d-flex align-center justify-center lg:justify-start">
                     <a href="https://discord.gg/dota-2-oficial" target="_blank">
                         <img src="@/assets/images/discord-white.webp" width="24" alt="Discord">

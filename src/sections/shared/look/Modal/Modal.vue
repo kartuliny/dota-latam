@@ -4,7 +4,7 @@ const emit = defineEmits(['close', 'submit']);
 defineProps({
     width: {
         type: String,
-        default: "400px"
+        default: ""
     },
     height: {
         type: String,
@@ -21,6 +21,10 @@ defineProps({
     showFooter: {
         type: Boolean,
         default: true
+    },
+    class: {
+        type: String,
+        default: ""
     }
 })
 
@@ -28,7 +32,7 @@ defineProps({
 
 <template>
     <div id="open-modal" class="modal">
-        <div :style="{ width, padding, 'max-height': height, display }" class="modal__content">
+        <div :style="{ width, padding, 'max-height': height, display }" class="modal__content" :class="class">
             <a href="#" title="Close" class="modal-close" @click="emit('close')">
                 <i class="bi bi-x-lg"></i>
             </a>
