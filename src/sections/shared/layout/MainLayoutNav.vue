@@ -96,9 +96,9 @@ const logout = async () => {
             </div>
             <img class="logo" src="@/assets/images/logo_final.webp" width="70" alt="Dota 2">
             <ul :class="{ hidden: hideNavbar || !scrollState.isNavbarVisible }">
-                <div class="lg:d-none position-relative d-flex px-32 pt-10 mb-32 align-center">
-                    <img class="w-8"
-                        :src="`https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`" alt="profile">
+                <div v-if="userData.username" class="lg:d-none position-relative d-flex px-32 pt-10 mb-32 align-center">
+                    <img class="w-8" :src="`https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`"
+                        alt="profile">
                     <h4 class="username ml-8 mr-20">{{ userData.displayName }}</h4>
 
                     {{ formatNumber(Number(userData.xp)) }} <span class="text-amarillo-latam strong ml-8">EXP</span>
@@ -108,12 +108,15 @@ const logout = async () => {
                     <i :class="page.icon" class="mr-4"></i>
                     {{ page.name }}
                 </li>
-                <li class="lg:d-none" @click="settingStore.toggleShowSteamTradeModal(); hideNavbar = true">
-                    Steam trade URL
-                </li>
-                <li class="lg:d-none" @click="logout">
-                    Cerrar sesión
-                </li>
+                <template v-if="userData.username">
+                    <li class="lg:d-none" @click="settingStore.toggleShowSteamTradeModal(); hideNavbar = true">
+                        Steam trade URL
+                    </li>
+                    <li class="lg:d-none" @click="logout">
+                        Cerrar sesión
+                    </li>
+                </template>
+
             </ul>
             <transition name="fade">
                 <div class="profile">
