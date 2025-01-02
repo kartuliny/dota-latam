@@ -32,11 +32,8 @@ const design = reactive({
 
 const wrapperSize = ref<number>(0)
 const wrapperRef = ref<HTMLDivElement | null>(null);
-const sound = new Audio('src/assets/play/audio-carusel.mp3');
-const soundWinner = new Audio('src/assets/play/fancy.wav');
-
-
-// const { prizeItemWidth, prizeItemHeight } = design;
+const sound = new Audio('/play/audio-carusel.mp3');
+const soundWinner = new Audio('/play/fancy.wav');
 
 const setCurrentWrapperWidth = () => {
     const { width, height } = (wrapperRef.value as HTMLDivElement).getBoundingClientRect();
