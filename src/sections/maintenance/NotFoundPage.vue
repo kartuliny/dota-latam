@@ -1,3 +1,5 @@
+<script setup lang="ts">
+</script>
 <template>
     <div class="w-full d-flex justify-center align-center">
         <div class="maintenance-page text-center">

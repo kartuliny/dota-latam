@@ -8,12 +8,12 @@ import AdminRuletaItems from '@/sections/admin/ruleta/list/Index.vue';
 import AdminXPHistory from '@/sections/admin/xp/history/Index.vue';
 import SignIn2 from "./sections/sign/SignIn2.vue";
 import Ruleta from "./sections/roulette/Index.vue";
-import MaintenancePage from "@/sections/maintenance/Index2.vue";
+import MaintenancePage from "@/sections/maintenance/Index..vue";
 import RegisterRuleta from "./sections/RegisterRuleta.vue";
 import MainLayoutAdmin from "./sections/shared/layout/MainLayoutAdmin.vue";
 import RuletaPro from "./sections/shared/look/Roulette/Index.vue";
 import axios from "axios";
-import NotFound from "@/sections/NotFound.vue";
+import NotFound from "@/sections/maintenance/NotFoundPage.vue";
 
 export const router = createRouter({
     history: createWebHistory(),

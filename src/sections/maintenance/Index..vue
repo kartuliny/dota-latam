@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const isMaintenanceMode = import.meta.env.VITE_MANTENIMIENTO === 'true'
+</script>
+
 <template>
     <div class="w-full d-flex justify-center align-center">
         <div v-if="isMaintenanceMode" class="maintenance-page">
@@ -17,16 +21,6 @@
         </div>
     </div>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            isMaintenanceMode: import.meta.env.VITE_MANTENIMIENTO === 'true',
-        };
-    },
-};
-</script>
 
 <style scoped>
 .w-full {
