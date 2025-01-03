@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from 'vue';
 import Register from '@/sections/admin/ruleta/register/Index.vue';
+import Editing from '@/sections/admin/ruleta/edit/Index.vue';
 import { RouletteAdminItem } from '@/modules/admin/roulette/domain/models/RouletteAdminItem';
 import { GetRouletteAdminItemsUseCase } from '@/modules/admin/roulette/application/GetRouletteAdminItemsUseCase';
 import { getRarityName, getRouletteTypeName } from '../../../../utils/format/items';
 
 const showToast = inject<any>('showToast');
 const showRegister = ref<boolean>(false);
+const showEdit = ref<boolean>(false);
+const itemEdit = ref<RouletteAdminItem>({} as RouletteAdminItem);
 const items = ref<RouletteAdminItem[]>();
 const loading = ref<boolean>(false);
 
@@ -17,6 +20,8 @@ const columns = [
     { label: 'Stock', name: 'stock' },
     { label: 'Precio', name: 'price' },
     { label: 'Tipo', name: 'type' },
+    { label: 'Habilitado', name: 'enabled' },
+    { label: 'Acciones', name: '' },
 ];
 
 const columnStyle = computed(() => {
@@ -27,6 +32,7 @@ const columnStyle = computed(() => {
 
 const reload = () => {
     showRegister.value = false;
+    showEdit.value = false;
 };
 
 const getItems = async () => {
@@ -46,12 +52,20 @@ const getItems = async () => {
     }
 };
 
+const editing = (item: RouletteAdminItem) => {
+    itemEdit.value = item;
+    showEdit.value = true;
+};
+
 onMounted(() => {
     getItems()
 });
 
 </script>
 <template>
+    <transition name="fade">
+        <Editing v-if="showEdit" @close="showEdit = false" :item="itemEdit" @reload="reload"></Editing>
+    </transition>
     <transition name="fade">
         <Register v-if="showRegister" @close="showRegister = false" @reload="reload"></Register>
     </transition>
@@ -67,7 +81,7 @@ onMounted(() => {
                 <table class="table">
                     <thead>
                         <tr>
-                            <th v-for=" column in columns" :style="columnStyle">{{ column.label }}
+                            <th class="bold text-gris-latam" v-for=" column in columns" :style="columnStyle">{{ column.label }}
                             </th>
                         </tr>
                     </thead>
@@ -79,6 +93,10 @@ onMounted(() => {
                             <td :style="columnStyle">{{ item.quantity }}</td>
                             <td :style="columnStyle">{{ item.price }}</td>
                             <td :style="columnStyle">{{ getRouletteTypeName(item.type) }}</td>
+                            <td :style="columnStyle">
+                                {{ item.enabled ? 'Si' : 'No' }}
+                            </td>
+                            <td :style="columnStyle"><button @click="editing(item)" class="btn outline"> Editar</button></td>
                         </tr>
                     </tbody>
                 </table>

@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { RegisterRouletteAdminItemUseCase } from '@/modules/admin/roulette/application/RegisterRouletteAdminItemUseCase';
+import { UpdateRouletteAdminItemUseCase } from '@/modules/admin/roulette/application/UpdateRouletteAdminItemUseCase';
 import { RouletteAdminItem } from '@/modules/admin/roulette/domain/models/RouletteAdminItem';
 import Modal from '@/sections/shared/look/Modal/Modal.vue';
-import { inject, ref } from 'vue';
+import { inject, onMounted, ref } from 'vue';
 
 const emit = defineEmits(['close', 'reload']);
 const showToast = inject<any>('showToast');
+const props = defineProps<{
+    item: RouletteAdminItem;
+}>();
 
 const rarities = [
     { name: 'Común', value: 0 },
@@ -34,13 +37,13 @@ const rouletteItem = ref<RouletteAdminItem>({
     enabled: false,
 });
 
-const register = async () => {
+const edit = async () => {
     try {
-        await RegisterRouletteAdminItemUseCase.invoke(rouletteItem.value);
+        await UpdateRouletteAdminItemUseCase.invoke(rouletteItem.value);
 
         showToast({
             title: '',
-            message: "Se ha guardado correctamente",
+            message: "Se ha actualizado correctamente",
             type: 'success',
             autoClose: true,
         });
@@ -49,7 +52,7 @@ const register = async () => {
     } catch (error) {
         showToast({
             title: '',
-            message: "Ha ocurrido un error al guardar",
+            message: "Ha ocurrido un error al actualizar",
             type: 'error',
             autoClose: true,
         });
@@ -59,14 +62,18 @@ const register = async () => {
 }
 
 const submit = () => {
-    register();
+    edit();
 }
+
+onMounted(() => {
+    rouletteItem.value = props.item;
+})
 </script>
 
 <template>
-    <Modal width="40vw" padding="4rem 2rem" height="80vh" :showFooter="true" @close="emit('close')" @submit="submit">
-        <h4 slot="title" class="mb-24 position-relative">Crear item</h4>
-        <div class="register">
+    <Modal width="40vw" padding="4rem 2rem" height="80vh" :showFooter="false" @close="emit('close')" @submit="submit">
+        <h4 slot="title" class="mb-24 position-relative">Editar item</h4>
+        <div class="register mb-20">
             <div class="input-group">
                 <label for="name">Nombre</label>
                 <input id="name" name="name" type="text" placeholder="Ingresar" v-model="rouletteItem.name">
@@ -108,6 +115,10 @@ const submit = () => {
                     <div class="slider round"></div>
                 </label>
             </div>
+        </div>
+        <div class="d-flex justify-evenly pt-12 position-relative">
+            <button class="btn outline" @click="emit('close')">Cancelar</button>
+            <button class="btn submit" @click="submit">Actualizar</button>
         </div>
     </Modal>
 </template>

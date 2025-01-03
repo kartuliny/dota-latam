@@ -5,5 +5,6 @@ export interface RouletteAdminRepository {
     getSetting: () => Promise<RouletteaAdminSettingResponse>;
     updateSetting: (setting: { [key: string]: any }) => Promise<void>;
     createItem: (item: RouletteAdminItem) => Promise<void>;
+    updateItem: (item: RouletteAdminItem) => Promise<void>;
     getItems: () => Promise<RouletteAdminItem[]>;
 }

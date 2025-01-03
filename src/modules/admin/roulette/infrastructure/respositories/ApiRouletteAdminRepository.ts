@@ -25,6 +25,13 @@ export class ApiRouletteAdminRepository extends BaseRepository implements Roulet
         await this.makeRequest<void>(url, { method: 'POST', headers, body: JSON.stringify(item) });
     }
 
+    async updateItem(item: RouletteAdminItem): Promise<void> {
+        const headers = await this.getHeaders();
+
+        const url = this.getEndpoint('/api/admin/roulette/update');
+        await this.makeRequest<void>(url, { method: 'POST', headers, body: JSON.stringify(item) });
+    }
+
     async getItems(): Promise<RouletteAdminItem[]> {
         const headers = await this.getHeaders();
 
