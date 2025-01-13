@@ -21,6 +21,7 @@ const getHistory = async () => {
 onMounted(() => {
     getHistory()
 });
+
 </script>
 <template>
     <div class="container h-100" v-loading="loading">
@@ -32,14 +33,14 @@ onMounted(() => {
         <div class="pb-60">
             <div class="mb-40" v-for="item in items">
                 <div class="d-flex align-items-end mb-10">
-                    <span class="fs-2 bold text-rojo-latam line-height-normal mr-4">{{ item.senderData.displayName
+                    <span class="fs-2 bold text-rojo-latam line-height-normal mr-4">{{ item.senderData ? item.senderData.displayName : 'Desconocido'
                         }}</span> envió
                     <strong class="fs-3 ml-4 mr-4">{{ item.xp }} XP a </strong>
-                    <span class="fs-2 bold text-morado-latam line-height-normal mr-4"> {{ item.receiverData.displayName
+                    <span class="fs-2 bold text-morado-latam line-height-normal mr-4"> {{ item.receiverData ? item.receiverData.displayName : 'Desconocido'
                         }}</span>
                 </div>
                 <div>
-                    <span class="fs-2 bold text-morado-latam line-height-normal mr-4"> {{ item.receiverData.displayName
+                    <span class="fs-2 bold text-morado-latam line-height-normal mr-4"> {{ item.receiverData ? item.receiverData.displayName : 'Desconocido'
                         }}</span> tenía
 
                     <span class="bold fs-3 mr-4">{{ item.oldXP }} XP</span> Ahora tiene <strong class="bold fs-3 mr-10">{{
