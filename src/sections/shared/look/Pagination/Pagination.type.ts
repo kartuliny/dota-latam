@@ -1,7 +1,7 @@
 export interface PaginationTableType {
     pageSize: number;
     pageSizeDefault?: number;
-    totalElements: number;
+    totalElements?: number;
     currentPage: number;
   }
   

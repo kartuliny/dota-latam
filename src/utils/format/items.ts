@@ -1,18 +1,18 @@
 export const getRarityName = (rarityNumber: number): string => {
     switch (rarityNumber) {
-        case 0:
-            return 'Común';
         case 1:
-            return 'Poco común';
+            return 'Común';
         case 2:
-            return 'Raro';
+            return 'Poco común';
         case 3:
-            return 'Mítico';
+            return 'Raro';
         case 4:
-            return 'Legendario';
+            return 'Mítico';
         case 5:
-            return 'Inmortal';
+            return 'Legendario';
         case 6:
+            return 'Inmortal';
+        case 7:
             return 'Arcano';
         default:
             return 'Desconocido';

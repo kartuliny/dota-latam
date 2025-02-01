@@ -31,13 +31,8 @@ const generateState = () => {
 </script>
 <template>
     <div class="login">
-        <!-- <div class="d-flex justify-center align-center">
-            <img src="@/assets/images/logo_final.webp" alt="logo" width="100">
-            <h1 class="text-dota2-red mb-56">Dota 2 Latam</h1>
-        </div> -->
         <div class="d-flex justify-center align-center w-full">
-            <!-- <img class="avatar" src="@/assets/images/lich.webp" alt="lich"> -->
-            <img class="avatar" src="@/assets/images/marco2.webp" alt="logo">
+            <img class="avatar" :src="$staticUrl + '/images/marco2.webp'" alt="logo">
 
             <div class="login-section">
                 <!-- <h2 class="mb-20 text-center">{{ $t('login.title') }}</h2> -->
@@ -59,13 +54,11 @@ const generateState = () => {
                     <hr class="w-10 hr-initial"><span class="ml-10 mr-10">{{ $t('labels.or') }}</span>
                     <hr class="w-10 hr-initial">
                 </div>
-
                 <button clasS="btn discord w-full">
-                    <img class="logo-discord mr-10" src="@/assets/images/discord-white.webp" alt="discord" width="24">
+                    <img class="logo-discord mr-10" :src="$staticUrl + '/images/discord-white.webp'" alt="discord" width="24">
                     <span class="fs-4" @click="loginWithDiscord">{{ $t('login.continueWith') }} Discord</span>
                 </button>
             </div>
-            <!-- <img class="avatar" src="@/assets/images/lich.webp" alt="lich"> -->
 
         </div>
     </div>

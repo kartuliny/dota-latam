@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useSettingStore } from '../store/setting/setting';
-import { GetRouletteAdminSettingUseCase } from '@/modules/admin/roulette/application/GetRouletteAdminSettingUseCase';
-
 
 export interface Page {
     name: string;
     path: string;
     icon: string;
 }
-
-const settingStore = useSettingStore()
 
 const pages = ref<Page[]>([]);
 
@@ -27,8 +22,9 @@ const renderSidebar = () => {
         console.log("Admin");
         pages.value = [
             { name: 'Inicio', path: '', icon: 'bi bi-house-fill' },
-            { name: 'Ruleta', path: 'ruleta', icon: 'bi bi-bullseye' },
-            { name: 'Ruleta Items', path: 'ruleta-lista', icon: 'bi bi-card-checklist' },
+            { name: 'Grupos Cofres', path: 'groups', icon: 'bi bi-bullseye' },
+            { name: 'Cofres', path: 'ruleta-cofres', icon: 'bi bi-box-seam-fill' },
+            { name: 'Items', path: 'ruleta-lista', icon: 'bi bi-card-checklist' },
             { name: 'Historial XP', path: 'xp-history', icon: 'bi bi-card-checklist' },
         ];
     } else if (role === 'history') {
@@ -45,8 +41,6 @@ const renderSidebar = () => {
 onMounted(async () => {
     renderSidebar();
     removeTheme();
-    const response = await GetRouletteAdminSettingUseCase.invoke()
-    settingStore.setSetting(response.settings);
 })
 
 const removeTheme = () => {
@@ -74,7 +68,6 @@ const removeTheme = () => {
             </nav>
         </div>
 
-        <!-- Content -->
         <main class="admin-layout__content">
             <router-view />
         </main>

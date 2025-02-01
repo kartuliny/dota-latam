@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ruletaWallpaper from '@/assets/images/fondo-ruleta.webp';
+import ruletaWallpaper from '/images/fondo-ruleta.webp';
 import { onMounted, ref } from 'vue';
 import Roulette from '../shared/look/Roulette/Index.vue';
 import { SettingsState, SettingsStateView, Tier, useSettingStore } from '../shared/store/setting/setting';
@@ -10,7 +10,7 @@ import { RouletteItemsResponse } from '@/modules/roulette/infrastructure/respons
 import { useRouter } from 'vue-router';
 import { formatNumber } from '@/utils/format/numbers';
 import { RunRouletteUseCase } from '@/modules/roulette/application/RunRouletteUseCase';
-import Confetti from './Confetti.vue';
+import Confetti from './Detail/Confetti.vue';
 import { getRarityName } from '@/utils/format/items';
 import SteamTradeModal from './SteamTradeModal.vue';
 import { useSocketStore } from '../shared/store/socket/socket';
@@ -128,7 +128,7 @@ onMounted(() => {
                 <div class="text-center">
                     <h4 class="type mb-10" :class="`rarity-${rouletteItemWinner.rarity}`">{{
                         getRarityName(rouletteItemWinner.rarity)
-                    }}</h4>
+                        }}</h4>
                     <img :src="rouletteItemWinner.url"
                         :class="{ 'grow-image': startGrowing, [`rarity-${rouletteItemWinner.rarity}`]: true }"
                         class="mx-auto result-image d-flex mb-10" alt="Resultado final" />
@@ -142,7 +142,7 @@ onMounted(() => {
     <!-- <div class="ruleta" :style="{ backgroundImagebackgroundImage: 'url(' + ruletaWallpaper + ')' }"> -->
     <div v-if="loadingSection" class="h-100 w-full" v-loading="loadingSection"></div>
     <template v-else>
-        <div v-if="!rouletteSettings" class="ruleta">
+        <div v-if="!rouletteSettings" class="ruleta mt-80 lg:mt-120">
             <div class="ruleta-background" :style="{ backgroundImage: 'url(' + ruletaWallpaper + ')' }"></div>
             <div class="position-relative d-flex w-full h-100 justify-center align-center">
                 <div class="text-center">
@@ -152,9 +152,9 @@ onMounted(() => {
                 </div>
             </div>
         </div>
-        <div v-else-if="rouletteSettings?.enabled" class="ruleta">
+        <div v-else-if="rouletteSettings?.enabled" class="ruleta mt-80 lg:mt-120">
             <div class="ruleta-background" :style="{ backgroundImage: 'url(' + ruletaWallpaper + ')' }"></div>
-            <div class="position-relative w-10/12 mx-auto mt-100" style="max-width: 1000px;">
+            <div class="position-relative w-10/12 mx-auto" style="max-width: 1000px;">
                 <div class="d-block w-full md:d-flex md:justify-space-between mb-40">
                     <div class="mb-20 text-center w-full md:w-2/5 md:text-left md:mb-0">
                         <h1 class="text-rojo-latam mb-20">Dota 2 Latam</h1>
@@ -166,7 +166,7 @@ onMounted(() => {
                                 class="text-legendario">Experiencia</strong> y obtén un ítem de Dota 2 de la ruleta.
                         </p>
 
-                        <div class="d-grid">
+                        <div class="d-grid grid-cols-2">
                             <template v-for="(roulette, index) in rouletteSettings.types">
                                 <div class="skew" v-if="roulette.enabled"
                                     :class="{ active: ruletaTypeSelected == index, [`${skews[index].name}`]: true }"
@@ -181,7 +181,7 @@ onMounted(() => {
                         <div>
                             <h1 class="mb-12 text-center" :class="{ [`${skews[ruletaTypeSelected].text}`]: true }">{{
                                 rouletteSettings.types![ruletaTypeSelected].name
-                                }}</h1>
+                            }}</h1>
                             <p class="mb-20 text-blanco-latam fs-2 text-center">¡Elige premio mayor!</p>
 
                             <div class="d-grid grid-template-1-1-1-1">
@@ -192,7 +192,7 @@ onMounted(() => {
                                             <img :src="item.url" :class="getImageClasses(index)">
                                             <span class="type" :class="`rarity-${item.rarity}`">{{
                                                 getRarityName(item.rarity)
-                                                }}</span>
+                                            }}</span>
 
                                         </div>
                                     </div>
@@ -226,7 +226,7 @@ onMounted(() => {
                                         <img :src="item.url">
                                         <span class="type" :class="`rarity-${item.rarity}`">{{
                                             getRarityName(item.rarity)
-                                            }}</span>
+                                        }}</span>
 
                                     </div>
                                 </div>
@@ -246,7 +246,7 @@ onMounted(() => {
                                         <img :src="item.url">
                                         <span class="type" :class="`rarity-${item.rarity}`">{{
                                             getRarityName(item.rarity)
-                                            }}</span>
+                                        }}</span>
 
                                     </div>
                                 </div>
@@ -266,7 +266,7 @@ onMounted(() => {
                                         <img :src="item.url">
                                         <span class="type" :class="`rarity-${item.rarity}`">{{
                                             getRarityName(item.rarity)
-                                            }}</span>
+                                        }}</span>
 
                                     </div>
                                 </div>
@@ -286,8 +286,14 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+@use '@/assets/scss/utils' as *;
+
 .selected {
-    border: 2px solid #00ff00;
+    border: 1px solid #00ff00 !important;
+
+    @include breakpoints("lg") {
+        border: 2px solid #00ff00 !important;
+    }
 }
 
 .summary {
@@ -309,7 +315,6 @@ onMounted(() => {
 }
 
 .ruleta {
-    margin-top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -417,67 +422,6 @@ onMounted(() => {
     font-weight: 600;
 }
 
-.skew {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 140px;
-    height: 45px;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    z-index: 1;
-    cursor: pointer;
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: -1;
-        border-radius: 10px;
-        transform: skewX(-15deg);
-    }
-
-    &.active {
-        &::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            z-index: -1;
-            margin: -5px;
-            border-radius: 15px;
-            transform: skewX(-15deg);
-            border: 2px solid var(--arcano);
-        }
-    }
-
-    &.comun {
-        &::before {
-            background: var(--gris-latam-plus-60);
-        }
-    }
-
-    &.poco-comun {
-        &::before {
-            background: linear-gradient(225deg, var(--arcano-plus-40) 0%, var(--raro-plus-60) 45%, var(--raro) 100%);
-        }
-    }
-
-    &.mitico {
-        &::before {
-            background: linear-gradient(225deg, var(--legendario-plus-60) 0%, var(--mitico-plus-20) 65%, var(--mitico-minus-20) 100%);
-        }
-    }
-}
-
-
 .item {
     position: relative;
     width: 100%;
@@ -487,10 +431,15 @@ onMounted(() => {
     cursor: pointer;
 
     img {
+        border: 1px solid transparent;
         width: 100%;
         object-fit: cover;
         border-radius: 0%;
         background: linear-gradient(to bottom, #747474 50%, #747474 50%);
+
+        @include breakpoints("lg") {
+            border: 2px solid transparent;
+        }
     }
 
     .title {

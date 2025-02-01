@@ -5,15 +5,14 @@ import { formatNumber } from '@/utils/format/numbers';
 import { computed, onMounted, onUnmounted, reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useSocketStore } from '../store/socket/socket';
-import { useSettingStore } from '../store/setting/setting';
 
 const router = useRouter();
 const route = useRoute();
 const socketStore = useSocketStore();
-const settingStore = useSettingStore();
 
 const rouletteWinners = computed(() => socketStore.rouletteWinners);
 const userData = computed(() => socketStore.userData);
+const userProfile = computed(() => socketStore.userProfile);
 const hideNavbar = ref<boolean>(true);
 
 const pages = [
@@ -84,6 +83,16 @@ const logout = async () => {
     }
 };
 
+const onProfile = () => {
+    hideNavbar.value = true;
+    router.push({ name: 'profile' });
+};
+
+const onRecharge = () => {
+    hideNavbar.value = true;
+    router.push({ name: 'recharge' });
+};
+
 </script>
 
 <template>
@@ -94,24 +103,36 @@ const logout = async () => {
                 <i class="hamburger pointer fs-1 bi" :class="[{ 'bi-list': hideNavbar, 'bi-x': !hideNavbar }]"
                     @click="hideNavbar = !hideNavbar"></i>
             </div>
-            <img class="logo" src="@/assets/images/logo_final.webp" width="70" alt="Dota 2">
+            <img class="logo" :src="$staticUrl + '/images/logo_final.webp'" width="70" alt="Dota 2">
             <ul :class="{ hidden: hideNavbar || !scrollState.isNavbarVisible }">
-                <div v-if="userData.username" class="lg:d-none position-relative d-flex px-32 pt-10 mb-32 align-center">
-                    <img class="w-8" :src="`https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`"
-                        alt="profile">
-                    <h4 class="username ml-8 mr-20">{{ userData.displayName }}</h4>
+                <div v-if="userData.username" class="lg:d-none position-relative d-flex align-center justify-evenly">
 
-                    {{ formatNumber(Number(userData.xp)) }} <span class="text-amarillo-latam strong ml-8">EXP</span>
+                    <div>
+                        <div class="text-center">{{ formatNumber(Number(userData.xp)) }} </div><span
+                            class="text-amarillo-latam strong d-block text-center">EXP</span>
+                    </div>
 
+                    <div>
+                        <div class="text-center d-flex align-center justify-center">{{ userProfile.coins || 0 }} <img class="ml-4" width="16" height="16" :src="$staticUrl + '/images/latam-coin.webp'" alt="latamcoin"></div><span class="text-amarillo-latam strong">LATAMCOIN</span>
+                    </div>
+
+                    <div>
+                        <img class="w-10 rounded-full d-block"
+                            :src="`https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`"
+                            alt="profile">
+                        <!-- <h5 class="username text-center">{{ userData.displayName }}</h5> -->
+                    </div>
                 </div>
+                <template v-if="userData.username">
+                    <li class="lg:d-none" @click="onProfile">
+                        Mi perfil
+                    </li>
+                </template>
                 <li v-for="page in pages" :class="{ active: isActive(page.path) }" @click="goToPage(page.path)">
                     <i :class="page.icon" class="mr-4"></i>
                     {{ page.name }}
                 </li>
                 <template v-if="userData.username">
-                    <li class="lg:d-none" @click="settingStore.toggleShowSteamTradeModal(); hideNavbar = true">
-                        Steam trade URL
-                    </li>
                     <li class="lg:d-none" @click="logout">
                         Cerrar sesión
                     </li>
@@ -121,28 +142,37 @@ const logout = async () => {
             <transition name="fade">
                 <div class="profile">
                     <template v-if="userData.username">
-                        <div class="pointer d-flex justify-center align-center" @click="toggleDropdown">
-                            <h5 class="fs-4" style="min-width: 180px;text-align: right; padding-right: 20px;">
-                                {{ formatNumber(Number(userData.xp)) }}
-                                <span class="text-amarillo-latam strong">EXP</span>
-                            </h5>
-                            <img class="avatar"
-                                :src="`https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`"
-                                alt="profile">
-                            <h4 class="username">{{ userData.displayName }}</h4>
-                            <i class="fs-6 ml-4 bi bi-caret-down-fill" :class="{ 'rotate-180': dropdownOpen }"></i>
+                        <div class="pointer d-flex justify-space-between align-center w-full" @click="toggleDropdown">
+                            <div class="d-flex">
+                                <div>
+                                    <div class="text-center fs-5">{{ formatNumber(Number(userData.xp)) }} </div><span
+                                        class="text-amarillo-latam strong d-block text-center">EXP</span>
+                                </div>
+
+                                <div class="ml-32">
+                                    <div class="text-center fs-5 d-flex align-center justify-center">{{ userProfile.coins || 0 }} <img class="ml-4" width="16" height="16" :src="$staticUrl + '/images/latam-coin.webp'" alt="latamcoin"></div><span
+                                        class="text-amarillo-latam strong">LATAMCOIN</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-center">
+                                <img class="avatar"
+                                    :src="`https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`"
+                                    alt="profile">
+                                <h4 class="username">{{ userData.displayName }}</h4>
+                                <i class="fs-6 ml-4 bi bi-caret-down-fill" :class="{ 'rotate-180': dropdownOpen }"></i>
+                            </div>
                         </div>
-                        <div class="dropdown" :class="{ 'active': dropdownOpen }" @mouseleave="closeDropdown">
-                            <a href="#" class="dropdown-link">Perfil</a>
-                            <a href="#" @click="settingStore.toggleShowSteamTradeModal()" class="dropdown-link">Steam
-                                trade URL</a>
+                        <div class="dropdown text-center" :class="{ 'active': dropdownOpen }"
+                            @mouseleave="closeDropdown">
+                            <a href="#" @click="onProfile" class="dropdown-link">Mi perfil</a>
+                            <a href="#" @click="onRecharge" class="dropdown-link">Recargar</a>
                             <a href="#" class="dropdown-link" @click="logout">Cerrar sesión</a>
                         </div>
                     </template>
                 </div>
             </transition>
         </nav>
-        <transition name="fade">
+        <transition name="fade" style="display: none;">
             <div class="prizes" :class="{ top0: scrollState.isNavbarVisible }">
                 <div class="prize position-relative ml-100" v-for="(winner) in rouletteWinners"
                     v-if="rouletteWinners.length">
@@ -157,7 +187,7 @@ const logout = async () => {
                                 <img :src="winner.item.url">
                                 <span class="type" :class="`rarity-${winner.item.rarity}`">{{
                                     getRarityName(winner.item.rarity)
-                                    }}</span>
+                                }}</span>
 
                             </div>
                         </div>
@@ -165,7 +195,22 @@ const logout = async () => {
                 </div>
             </div>
         </transition>
-        <router-view />
+        <div class="d-flex">
+            <div class="w-full">
+                <router-view />
+            </div>
+            <!-- <div class="w-max">
+                <div class="bg-black position-relative mt-100">
+                    <div class="item">
+                        <img src="https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KW1Zwwo4NUX4oFJZEHLbXK9QlSPcUxpg5PRUnCCOeiwt3aVk9LMQ0O-bmqPhVp1uH3ZTQb09CgmNHElPjhIbLUhFRF4ZxOhv_NpLP5iUazrl04NTr3coWUJlRsZFzR-wC9ybjohJDv7s_BwHtj6CFx7SuIlxK-gxpJcKUx0mAxTusH/330x192?allow_animated=1">
+                        <span class="type" :class="`rarity-0`">{{
+                            getRarityName(0)
+                        }}</span>
+
+                    </div>
+                </div>
+            </div> -->
+        </div>
     </div>
 </template>
 <style lang="scss" scoped>

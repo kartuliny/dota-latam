@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import dotaWallpaper from '@/assets/images/dota-wallpaper-2.jpg';
 import Footer from './Footer.vue';
+import { getCurrentInstance } from 'vue';
+const { proxy } = getCurrentInstance()!;
+const staticUrl = proxy?.$staticUrl;
+
+getCurrentInstance
 
 interface BoosterItem {
     name: string;
@@ -16,99 +20,83 @@ const boosters: BoosterItem[] = [
         username: 'everyone',
         mmr: 7800,
         stars: 5,
-        avatar: "/images/booster_everyone.webp",
+        avatar: staticUrl+"/images/booster_everyone.webp",
     },
     {
         name: 'Jhairsito',
         username: 'jhairsito',
         mmr: 10000,
         stars: 5,
-        avatar: "/images/booster_jhairsito.webp",
+        avatar: staticUrl+"/images/booster_jhairsito.webp",
     },
     {
         name: 'Luxus',
         username: 'luxus',
         mmr: 11000,
         stars: 5,
-        avatar: "/images/booster_luxus.webp",
+        avatar: staticUrl+"/images/booster_luxus.webp",
     },
     {
         name: 'Isoka',
         username: 'isoka',
         mmr: 7200,
         stars: 5,
-        avatar: "/images/booster_isoka.webp",
-    },
-    {
-        name: 'Novice',
-        username: 'novice',
-        mmr: 10000,
-        stars: 5,
-        avatar: "/images/booster_novice.webp",
+        avatar: staticUrl+"/images/booster_isoka.webp",
     },
     {
         name: 'M i n n a',
         username: 'minna',
         mmr: 10000,
         stars: 5,
-        avatar: "/images/booster_minna.webp",
+        avatar: staticUrl+"/images/booster_minna.webp",
     },
     {
         name: 'Bored',
         username: 'bored',
         mmr: 7700,
         stars: 5,
-        avatar: "/images/booster_bored.webp",
+        avatar: staticUrl+"/images/booster_bored.webp",
     },
     {
         name: 'Cris',
         username: 'cris',
         mmr: 10700,
         stars: 5,
-        avatar: "/images/booster_cris.webp",
+        avatar: staticUrl+"/images/booster_cris.webp",
     },
     {
         name: 'Henryrls',
         username: 'henryrls',
         mmr: 8500,
         stars: 5,
-        avatar: "/images/booster_henryrls.webp",
-    },
-    {
-        name: 'BernaBerna',
-        username: 'bernaberna',
-        mmr: 12400,
-        stars: 5,
-        avatar: "/images/booster_bernaberna.webp",
+        avatar: staticUrl+"/images/booster_henryrls.webp",
     },
 ]
 
 </script>
 
 <template>
-    <div class="home">
-        <nav class="front-page section red mh-80">
-            <div :style="{ backgroundImage: 'url(' + dotaWallpaper + ')' }" class="dota-wallpaper-1"></div>
+    <div class="home mt-80">
+        <nav class="section red mh-80 pt-80 lg:pt-120">
+            <div :style="{ backgroundImage: 'url(' + $staticUrl +  '/images/dota-wallpaper-2.webp)' }" class="dota-wallpaper-1"></div>
             <div class="gradient-bottom"></div>
-            <img class="d-none dota-profile-1 lg:d-block" src="@/assets/images/roshan.webp" alt="dota-1">
+            <img class="d-none dota-profile-1 lg:d-block" :src="$staticUrl + '/images/roshan.webp'" alt="dota-1">
             <section class="section lg:pt-48 w-10/12 text-center lg:text-left">
                 <div class="d-flex align-center justify-center lg:justify-start">
                     <a href="https://discord.gg/dota-2-oficial" target="_blank">
-                        <img src="@/assets/images/discord-white.webp" width="24" alt="Discord">
+                        <img :src="$staticUrl + '/images/discord-white.webp'" width="24" alt="Discord">
                     </a>
-                    <img class="ml-20" src="@/assets/images/facebook-white.webp" width="24" alt="Discord">
+                    <img class="ml-20" :src="$staticUrl + '/images/facebook-white.webp'" width="24" alt="Discord">
                 </div>
 
                 <h1 class="text-rojo-latam my-16">Dota 2 Latam</h1>
                 <h1 class="lh-1 fs-2 mb-10">Eleva tu experiencia a otro nivel</h1>
                 <hr class="mb-32 w-10 d-inline-block mx-auto lg:ml-0">
                 </hr>
-                <!-- <img src="@/assets/images/discord.png" width="36" alt="Discord"> -->
-                <!-- <a class="ml-10" href="https://discord.gg/dota-2-oficial" target="_blank"><h4>Discord</h4></a> -->
 
                 <div class="d-flex md: align-center md:justify-center md:d-flex mb-40 lg:w-1/2">
                     <div class="d-block text-center py-4 px-4 border-radius-10 border-morado-latam w-1/2 mr-10">
-                        <img class="d-block mx-auto object-fit-contain" src="@/assets/images/discord-partner.png" alt="partner" width="25">
+                        <img class="d-block mx-auto object-fit-contain" :src="$staticUrl + '/images/discord-partner.webp'" alt="partner" width="25">
                         <span class="fs-6 text-center">Discord Partner</span>
                     </div>
 
@@ -119,14 +107,14 @@ const boosters: BoosterItem[] = [
                     </div>
                 </div>
 
-                <div class="d-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-40">
+                <div class="d-grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-40">
                     <div class="gaming-card purple w-full">
-                        <img src="@/assets/images/tesoro-cache-1.png" alt="tesoro-cache">
+                        <img :src="$staticUrl + '/images/tesoro-cache-1.webp'" alt="tesoro-cache">
                         <div class="title text-left">Set Caché</div>
                         <div class="button">Pronto</div>
                     </div>
                     <div class="gaming-card red w-full">
-                        <img src="@/assets/images/tauro.png" alt="tauro">
+                        <img :src="$staticUrl + '/images/tauro.webp'" alt="tauro">
                         <div class="title text-left">Intermediario</div>
                         <div class="button">Pronto</div>
                     </div>
@@ -138,13 +126,13 @@ const boosters: BoosterItem[] = [
             <hr class="hr-small w-5 d-inline-block">
             <!-- <p class="fs-3 text-center mb-32">Te ofrecemos confianza y profesionalismo de la mano de nuestros Boosters Inmortals, capacitados para mejorar tu MMR, KDA y maestría, en el mejor tiempo, precio y calidad ✨</p> -->
 
-            <div class="d-grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 w-10/12 mt-20 mb-56 mx-auto">
+            <div class="d-grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 w-10/12 mt-20 mb-56 mx-auto">
                 <div class="card" v-for="booster in boosters">
                     <div class="avatar"><img :src="booster.avatar" alt="Profile 1" width="60"></div>
                     <div class="info">
                         <div class="mb-4 d-flex align-center justify-center">
                             <h5 class="text-comun">{{ booster.name }}</h5>
-                            <img class="ml-10" src="@/assets/images/inmortal.webp" width="30" alt="inmortal">
+                            <img class="ml-10" :src="$staticUrl + '/images/inmortal.webp'" width="30" alt="inmortal">
                         </div>
                         <div class="bg-inmortal border-radius-10 width-max-content mx-auto">
                             <span class="fs-6 text-blanco-latam px-20">{{ booster.mmr }} MMR</span>
@@ -165,7 +153,7 @@ const boosters: BoosterItem[] = [
 
             <div class="d-block mt-20 mb-56 text-center lg:d-flex lg:justify-space-between lg:align-center lg:w-10/12 mx-auto">
                 <div>
-                    <img class="text-center tiny-image" src="@/assets/images/tiny.png" alt="tiny">
+                    <img class="text-center tiny-image" :src="$staticUrl + '/images/tiny.webp'" alt="tiny">
                 </div>
                 <div class="lh-2">
                     <h4 class="mb-40">¿Cómo funciona la <span

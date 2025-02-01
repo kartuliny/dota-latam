@@ -3,11 +3,17 @@ import SignInVerify from "@/sections/sign/SignInVerify.vue";
 import MainLayoutNav from "./sections/shared/layout/MainLayoutNav.vue";
 import Home from '@/sections/home/Index.vue';
 import AdminHome from '@/sections/admin/Index.vue';
-import AdminRuleta from '@/sections/admin/ruleta/config/Index.vue';
+import AdminRuletaGroups from '@/sections/admin/ruleta/groups/Index.vue';
+import AdminRuletaGroup from '@/sections/admin/ruleta/group/Index.vue';
+import AdminRuletaChests from '@/sections/admin/ruleta/chests/Index.vue';
+import AdminRuletaChest from '@/sections/admin/ruleta/chest/Index.vue';
+
 import AdminRuletaItems from '@/sections/admin/ruleta/list/Index.vue';
 import AdminXPHistory from '@/sections/admin/xp/history/Index.vue';
 import SignIn2 from "./sections/sign/SignIn2.vue";
 import Ruleta from "./sections/roulette/Index.vue";
+import Profile from "./sections/shared/profile/Index.vue";
+import Recharge from "./sections/shared/recharge/Index.vue";
 import MaintenancePage from "@/sections/maintenance/Index..vue";
 import RegisterRuleta from "./sections/RegisterRuleta.vue";
 import MainLayoutAdmin from "./sections/shared/layout/MainLayoutAdmin.vue";
@@ -42,6 +48,24 @@ export const router = createRouter({
                         description: "Juega y gana con la ruleta de Dota 2. ¡Diversión y premios garantizados!"
                     }
                 },
+                {
+                    path: "perfil",
+                    name: "profile",
+                    component: Profile,
+                    meta: {
+                        title: "Perfil - Dota2 Latam",
+                        description: "Consulta tu perfil de Dota 2 y participa en la comunidad."
+                    }
+                },
+                {
+                    path: "recarga",
+                    name: "recharge",
+                    component: Recharge,
+                    meta: {
+                        title: "Recarga - Dota2 Latam",
+                        description: "Recarga tu cuenta de Dota 2 y participa en la ruleta y eventos."
+                    }
+                }
             ]
         },
         {
@@ -62,15 +86,48 @@ export const router = createRouter({
                     component: AdminHome,
                 },
                 {
-                    path: "ruleta",
-                    name: "admin-ruleta",
+                    path: "groups",
+                    name: "admin-groups",
                     meta: {
                         requiresAuth: true,
                         roles: ['admin'],
                         title: "Configuración de Ruleta - Admin",
                         description: "Configura las reglas y premios de la ruleta en Dota 2."
                     },
-                    component: AdminRuleta,
+                    component: AdminRuletaGroups,
+                },
+                {
+                    path: "groups/:id",
+                    name: "admin-group-detail",
+                    meta: {
+                        requiresAuth: true,
+                        roles: ['admin'],
+                        title: "Configuración de Grupo Cofres - Admin",
+                        description: "Configura los cofres de la ruleta en Dota 2."
+                    },
+                    component: AdminRuletaGroup,
+                },
+                {
+                    path: "ruleta-cofres",
+                    name: "admin-cofres",
+                    meta: {
+                        requiresAuth: true,
+                        roles: ['admin'],
+                        title: "Configuración de Ruleta - Cofres",
+                        description: "Configura los cofres de la ruleta en Dota 2."
+                    },
+                    component: AdminRuletaChests,
+                },
+                {
+                    path: "ruleta-cofres/:id",
+                    name: "admin-cofres-detail",
+                    meta: {
+                        requiresAuth: true,
+                        roles: ['admin'],
+                        title: "Configuración de Ruleta - Cofres",
+                        description: "Configura los cofres de la ruleta en Dota 2."
+                    },
+                    component: AdminRuletaChest,
                 },
                 {
                     path: "ruleta-lista",

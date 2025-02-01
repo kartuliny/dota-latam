@@ -23,6 +23,11 @@
         margin-top: $mb;
         margin-bottom: $mb;
     }
+
+    .my-#{$number} {
+        margin-left: $mb;
+        margin-right: $mb;
+    }
     
     @each $breakpoint, $value in utils.$breakpoints-up {
         @media (min-width: #{$value}) {
@@ -45,11 +50,6 @@
             .#{$breakpoint}\:my-#{$number} {
                 margin-top: #{$number} !important;
                 margin-bottom: $mb !important;
-            }
-
-            .#{$breakpoint}\:mx-#{$number} {
-                margin-left: #{$number} !important;
-                margin-right: $mb !important;
             }
         }
     }
@@ -104,11 +104,38 @@
     }
 
     .px-#{$number} {
-        padding: 0 $pd;
+        padding-left: $pd;
+        padding-right: $pd;
     }
 
     .py-#{$number} {
-        padding: $pd 0;
+        padding-top: $pd;
+        padding-bottom: $pd;
+    }
+
+    @each $breakpoint, $value in utils.$breakpoints-up {
+        @media (min-width: #{$value}) {
+            .#{$breakpoint}\:pb-#{$number} {
+                padding-bottom: $pd !important;
+            }
+
+            .#{$breakpoint}\:pl-#{$number} {
+                padding-left: $pd !important;
+            }
+
+            .#{$breakpoint}\:pr-#{$number} {
+                padding-right: $pd !important;
+            }
+
+            .#{$breakpoint}\:pt-#{$number} {
+                padding-top: $pd !important;
+            }
+
+            .#{$breakpoint}\:py-#{$number} {
+                padding-top: #{$number}px !important;
+                padding-bottom: $pd !important;
+            }
+        }
     }
 }
 

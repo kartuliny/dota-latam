@@ -6,6 +6,11 @@
     flex-direction: column;
     margin-top: 12px;
 
+    &.small {
+        min-height: 200px;
+        max-height: 280px;
+    }
+
     &.overflow {
         overflow-x: auto;
     }
@@ -67,12 +72,17 @@ tbody {
     width: 100%;
     min-height: 540px;
     max-height: 80vh;
+
+    &.small {
+        min-height: 200px;
+        max-height: 280px;
+    }
 }
 
 tbody tr {
-    background-color: white;
+    // background-color: white;
     border-radius: 6px;
-    border: solid 1px #e8ecee;
+    // border: solid 1px #e8ecee;
     min-height: 44px;
     display: flex;
     align-items: center;

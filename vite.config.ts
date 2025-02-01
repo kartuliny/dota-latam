@@ -20,5 +20,6 @@ export default defineConfig({
     define: {
         APP_VERSION: JSON.stringify(process.env.npm_package_version),
         APP_NAME: JSON.stringify(process.env.npm_package_name),
+        STATIC_URL: JSON.stringify(process.env.VITE_STATIC_URL),
     }
 });

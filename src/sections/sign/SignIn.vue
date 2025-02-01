@@ -19,13 +19,8 @@ const generateState = () => {
 </script>
 <template>
     <div class="login">
-        <!-- <div class="d-flex justify-center align-center">
-            <img src="@/assets/images/logo_final.webp" alt="logo" width="100">
-            <h1 class="text-dota2-red mb-56">Dota 2 Latam</h1>
-        </div> -->
         <div class="d-flex justify-center align-center w-full">
-            <!-- <img class="avatar" src="@/assets/images/lich.webp" alt="lich"> -->
-            <img src="@/assets/images/logo_final.webp" alt="logo" width="320">
+            <img :src="$staticUrl + '/images/logo_final.webp'" alt="logo" width="320">
 
             <div class="login-section">
                 <h2 class="mb-20 text-center">Iniciar sesión</h2>
@@ -47,11 +42,10 @@ const generateState = () => {
                 </div>
 
                 <button clasS="btn btn-discord">
-                    <img class="logo-discord mr-10" src="@/assets/images/discord-white.webp" alt="discord" width="24">
+                    <img class="logo-discord mr-10" :src="$staticUrl + '/images/discord-white.webp'" alt="discord" width="24">
                     <span class="fs-4" @click="loginWithDiscord">Continuar con Discord</span>
                 </button>
             </div>
-            <!-- <img class="avatar" src="@/assets/images/lich.webp" alt="lich"> -->
 
         </div>
     </div>

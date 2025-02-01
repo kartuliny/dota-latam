@@ -2,6 +2,7 @@ import { RouletteItem } from '@/modules/roulette/domain/models/RouletteItem';
 import { defineStore } from 'pinia';
 import { io, Socket } from 'socket.io-client';
 import { UserData } from '../../../../modules/shared/user/domain/models/UserData';
+import { UserProfile } from '@/modules/shared/user/domain/models/UserProfile';
 
 interface RouletteSocketData {
     user: {
@@ -17,11 +18,15 @@ export const useSocketStore = defineStore('socket', {
         socket: null as Socket | null,
         rouletteWinners: [] as RouletteSocketData[],
         userData: { freeSpin: 0, xp: '0', tradeUrl: '' } as UserData, 
+        userProfile: { tradeUrl: '', steamId: '', coins: 0 } as UserProfile, 
         messages: [] as any[],
     }),
     actions: {
         setUserData(userData: UserData) {
             this.userData = userData;
+        },
+        setUserProfile(userProfile: UserProfile) {
+            this.userProfile = userProfile;
         },
         connectSocket() {
             if (!this.socket) {
@@ -48,7 +53,13 @@ export const useSocketStore = defineStore('socket', {
                 });
 
                 this.socket.on('xp', (data: string) => {
+                    console.log("xp", data)
                     this.userData.xp = data;
+                });
+
+                this.socket.on('coin', (data: number) => {
+                    console.log("coin", data)
+                    this.userProfile.coins = data;
                 });
 
                 this.socket.on('message', (data) => {

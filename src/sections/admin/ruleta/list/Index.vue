@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from 'vue';
-import Register from '@/sections/admin/ruleta/register/Index.vue';
-import Editing from '@/sections/admin/ruleta/edit/Index.vue';
 import { RouletteAdminItem } from '@/modules/admin/roulette/domain/models/RouletteAdminItem';
 import { GetRouletteAdminItemsUseCase } from '@/modules/admin/roulette/application/GetRouletteAdminItemsUseCase';
 import { getRarityName, getRouletteTypeName } from '../../../../utils/format/items';
@@ -63,12 +61,6 @@ onMounted(() => {
 
 </script>
 <template>
-    <transition name="fade">
-        <Editing v-if="showEdit" @close="showEdit = false" :item="itemEdit" @reload="reload"></Editing>
-    </transition>
-    <transition name="fade">
-        <Register v-if="showRegister" @close="showRegister = false" @reload="reload"></Register>
-    </transition>
     <div class="w-full pt-40 h-100" v-loading="loading">
         <div class="container">
             <div class="d-flex justify-space-between align-center w-full">

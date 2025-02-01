@@ -138,9 +138,11 @@
     --amarillo-latam: #fcf300;
     --rojo: #ff0000;
     --verde: #21ba45;
+    --verde-light: #00ff3c;
     --default-text: var(--blanco-latam);
     --rojo-latam-light: rgb(214, 74, 20);
     --text-shadow-rojo-latam: 0px 0px 12px rgba(232, 99, 17, 0.75);
+    --text-shadow-verde: 0px 0px 12px rgba(64, 255, 0, 0.75);
 
     --box-shadow-gradient: 0 -63px 37px rgba(24, 24, 27, 0.9);
 
@@ -155,6 +157,65 @@
     --front-page-background: rgba(5, 6, 7, 0.3);
     --roulette-prizes-background: rgba(5, 6, 7, 0.6);
     --main-background: var(--negro-latam);
+
+        /* Variantes para cada nivel */
+    /* Comun */
+    --comun-plus-20: #d0d8e4;
+    --comun-plus-40: #e6ecf0;
+    --comun-plus-60: #f4f6fa;
+    /* Mucho más claro */
+    --comun-minus-20: #96a8bd;
+    --comun-minus-40: #7e90a5;
+    --comun-minus-60: #67788d;
+    /* Mucho más oscuro */
+
+    /* Poco común */
+    --poco-comun-plus-20: #81addf;
+    --poco-comun-plus-40: #a4c3e6;
+    --poco-comun-plus-60: #c7d9ed;
+    --poco-comun-minus-20: #4d80b0;
+    --poco-comun-minus-40: #3f6890;
+    --poco-comun-minus-60: #324f70;
+
+    /* Raro */
+    --raro-plus-20: #6a83ff;
+    --raro-plus-40: #889cff;
+    --raro-plus-60: #a6b5ff;
+    --raro-minus-20: #3c52d1;
+    --raro-minus-40: #303fa4;
+    --raro-minus-60: #242f77;
+
+    /* Mítico */
+    --mitico-plus-20: #a373ff;
+    --mitico-plus-40: #bf99ff;
+    --mitico-plus-60: #d9bfff;
+    --mitico-minus-20: #6a34d1;
+    --mitico-minus-40: #5229a4;
+    --mitico-minus-60: #3d1f77;
+
+    /* Legendario */
+    --legendario-plus-20: #e054ea;
+    --legendario-plus-40: #e97aee;
+    --legendario-plus-60: #f3a0f2;
+    --legendario-minus-20: #a523b4;
+    --legendario-minus-40: #7f1b8c;
+    --legendario-minus-60: #601468;
+
+    /* Inmortal */
+    --inmortal-plus-20: #c3a852;
+    --inmortal-plus-40: #d8be71;
+    --inmortal-plus-60: #ecda90;
+    --inmortal-minus-20: #947128;
+    --inmortal-minus-40: #74561e;
+    --inmortal-minus-60: #573f15;
+
+    /* Arcano */
+    --arcano-plus-20: #c3e887;
+    --arcano-plus-40: #d8f0a9;
+    --arcano-plus-60: #ecf8cc;
+    --arcano-minus-20: #8fb247;
+    --arcano-minus-40: #72903a;
+    --arcano-minus-60: #566f2c;
 
     --morado-latam-minus-80: #1e2176;
     --morado-latam-minus-60: #353d92;
@@ -196,4 +257,28 @@
     --input-background: var(--gris-latam-minus-80);
     --input-border: var(--gris-latam-minus-60);
     --input-text: var(--blanco);
+
+
+
+
+
+
+
+    --primary-color: #646cff;
+    --highlight-color: rgba(255, 255, 255, 0.08);
+    --background-color: #000;
+    --text-color: rgba(255, 255, 255, 0.87);
+    --border-color: rgba(255, 255, 255, 0.05);
+    
+    /* Transitions */
+    --transition-duration: 0.4s;
+    --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Tabs specific */
+    --tabs-gap: 0.5rem;
+    --tab-padding: 0.45rem 1.25rem;
+    --tab-border-radius: 8px;
+    --tab-font-size: 1rem;
+    --tab-font-weight: 500;
+    --tabs-nav-padding: 0.375rem;
 }

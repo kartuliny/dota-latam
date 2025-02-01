@@ -1,24 +1,13 @@
 <template>
     <div class="pagination">
         <div v-if="itemName" class="items-name">{{ itemName }}</div>
-        <div class="display-number">
-            {{ $t('labels.showing') }} {{ pageMin }}-{{ pageMax }} {{ $t('labels.of') }} {{ valueLocal.totalElements }}
-        </div>
-        <div class="display-buttons">
-            <ButtonCircle id="reset-page-size-button" variant="outline-circle" icon="arrow-repeat"
-                @click="emitChanges"></ButtonCircle>
-            <span class="label-rows">{{ $t('labels.rows') }}</span>
-            <input id="pageSize" v-model="pageSize" :readonly="readonlyPageSize"
-                :class="['input-number', classReadOnly]" type="number" min="1" @input="validateMax"
-                @change="updatePageSize" />
-            <span class="separator"></span>
-
+        <div class="display-buttons mx-auto">
             <ButtonCircle id="first-page-button" variant="outline-circle" icon="chevron-double-left"
                 :disabled="isFirstPageNumber" @click="onClickDirection(0)"></ButtonCircle>
             <ButtonCircle id="prev-page-button" variant="outline-circle" icon="chevron-left"
                 :disabled="isFirstPageNumber" @click="onClickDirection(-1)"></ButtonCircle>
 
-            <span class="label-page">{{ $t('labels.page') }}</span>
+            <span class="label-page">Página</span>
             <input id="currentPage" v-model="currentPage" class="input-number" type="number" min="1"
                 :max="lastPageNumber" @change="updateCurrentPage" />
             <span class="separator">/</span>
@@ -76,8 +65,8 @@ watch(
 const classReadOnly = computed(() => (props.readonlyPageSize ? 'readonly' : ''));
 
 const pageMin = computed(() => currentStartingElementCount.value);
-const pageMax = computed(() => Math.min(pageMin.value + valueLocal.value.pageSize - 1, valueLocal.value.totalElements));
-const lastPageNumber = computed(() => (valueLocal.value.totalElements === 0 ? 1 : Math.ceil(valueLocal.value.totalElements / valueLocal.value.pageSize)));
+const pageMax = computed(() => Math.min(pageMin.value + valueLocal.value.pageSize - 1, valueLocal.value.totalElements!));
+const lastPageNumber = computed(() => (valueLocal.value.totalElements === 0 ? 1 : Math.ceil(valueLocal.value.totalElements! / valueLocal.value.pageSize)));
 const currentStartingElementCount = computed(() => {
     if (valueLocal.value.totalElements === 0) return 0;
     return valueLocal.value.currentPage === 1 ? 1 : (valueLocal.value.currentPage - 1) * pageSize.value + 1;
@@ -176,7 +165,7 @@ span {
 }
 
 .current {
-    color: #ffd102;
+    color: var(--rojo-latam);
 }
 
 .input-number {
@@ -184,7 +173,7 @@ span {
     border-radius: 5px;
     width: 35px;
     text-align: center;
-    color: #ffd102;
+    color: var(--rojo-latam);
 }
 
 .input-number:focus {
